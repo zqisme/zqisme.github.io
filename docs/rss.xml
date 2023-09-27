@@ -1,2 +1,21 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Narcissu</title><link>https://zqisme.github.io</link><description>这是我的玫瑰。</description><copyright>Narcissu</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.com/zqisme/picx-images-hosting/raw/master/20230927/win10avatar.ssuc37tkt5s.webp</url><title>avatar</title><link>https://zqisme.github.io</link></image><lastBuildDate>Wed, 27 Sep 2023 02:16:16 +0000</lastBuildDate><managingEditor>Narcissu</managingEditor><pubDate>Wed, 27 Sep 2023 02:16:16 +0000</pubDate><ttl>60</ttl><webMaster>Narcissu</webMaster></channel></rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Narcissu</title><link>https://zqisme.github.io</link><description>这是我的玫瑰。</description><copyright>Narcissu</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.com/zqisme/picx-images-hosting/raw/master/20230927/win10avatar.ssuc37tkt5s.webp</url><title>avatar</title><link>https://zqisme.github.io</link></image><lastBuildDate>Wed, 27 Sep 2023 02:37:34 +0000</lastBuildDate><managingEditor>Narcissu</managingEditor><pubDate>Wed, 27 Sep 2023 02:37:34 +0000</pubDate><ttl>60</ttl><webMaster>Narcissu</webMaster><item><title>staxrip简易使用指南</title><link>https://zqisme.github.io/post/staxrip-jian-yi-shi-yong-zhi-nan.html</link><description>&#13;
+## 界面&#13;
+&#13;
+点击save project as template可将当前配置保存为模板并在启动时自动应用，open video source file可导入视频![](https://github.com/zqisme/picx-images-hosting/raw/master/20230926/屏幕截图(25).7j0psgrqoxw0.webp)    &#13;
+&#13;
+apps栏有许多常用的压制工具&#13;
+&#13;
+![](https://github.com/zqisme/picx-images-hosting/raw/master/20230926/屏幕截图(27).21cixk9g4bkw.webp)  &#13;
+&#13;
+vs filter鼠标左键点击可以添加各种vs滤镜，resize可以方便调整输出分辨率，nvenc（编码栏）点击可以选择输出的编码，mkv点击可以选择视频的容器&#13;
+&#13;
+![](https://github.com/zqisme/picx-images-hosting/raw/master/20230926/屏幕截图(26).1bitu32o9yn4.webp)&#13;
+&#13;
+## 使用nvenc显卡加速编码&#13;
+&#13;
+edit profiles，点击add 选择nvencc h265为模板新建配置&#13;
+&#13;
+![](https://github.com/zqisme/picx-images-hosting/raw/master/20230926/屏幕截图(28).sr62q9hy0rk.webp)&#13;
+&#13;
+具体参数设置可参考[VCB-Studio教程](https://vcb-s.nmm-hd.org)，以及[nvencc说明](https://github.com/rigaya/NVEnc/blob/master/NVEncC_Options.en.md)，个人使用的是vbrq。</description><guid isPermaLink="true">https://zqisme.github.io/post/staxrip-jian-yi-shi-yong-zhi-nan.html</guid><pubDate>Wed, 27 Sep 2023 02:35:30 +0000</pubDate></item></channel></rss>
