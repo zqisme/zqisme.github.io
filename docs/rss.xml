@@ -1,5 +1,18 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Narcissu</title><link>https://zqisme.github.io</link><description>这是我的玫瑰。</description><copyright>Narcissu</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.com/zqisme/picx-images-hosting/raw/master/20230927/win10avatar.ssuc37tkt5s.webp</url><title>avatar</title><link>https://zqisme.github.io</link></image><lastBuildDate>Wed, 27 Sep 2023 02:37:34 +0000</lastBuildDate><managingEditor>Narcissu</managingEditor><pubDate>Wed, 27 Sep 2023 02:37:34 +0000</pubDate><ttl>60</ttl><webMaster>Narcissu</webMaster><item><title>staxrip简易使用指南</title><link>https://zqisme.github.io/post/staxrip-jian-yi-shi-yong-zhi-nan.html</link><description>&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Narcissu</title><link>https://zqisme.github.io</link><description>这是我的玫瑰。</description><copyright>Narcissu</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.com/zqisme/picx-images-hosting/raw/master/20230927/win10avatar.ssuc37tkt5s.webp</url><title>avatar</title><link>https://zqisme.github.io</link></image><lastBuildDate>Wed, 27 Sep 2023 02:41:18 +0000</lastBuildDate><managingEditor>Narcissu</managingEditor><pubDate>Wed, 27 Sep 2023 02:41:18 +0000</pubDate><ttl>60</ttl><webMaster>Narcissu</webMaster><item><title>如何阅读一本书</title><link>https://zqisme.github.io/post/ru-he-yue-du-yi-ben-shu.html</link><description>## [如何阅读一本书 ](https://book.douban.com/subject/1013208/)&#13;
+&#13;
+## 阅读的目的&#13;
+&#13;
+1娱乐消遣&#13;
+2获取资讯&#13;
+2提升自己&#13;
+&#13;
+## 阅读方式方法&#13;
+&#13;
+阅读前准备及阅读&#13;
+对于娱乐消遣可以采用检视阅读，对于学习应采用分析阅读&#13;
+&#13;
+首先大概了解下阅读的书（通过目录导言等），主动阅读（带着问题去阅读what why how）。</description><guid isPermaLink="true">https://zqisme.github.io/post/ru-he-yue-du-yi-ben-shu.html</guid><pubDate>Wed, 27 Sep 2023 02:40:52 +0000</pubDate></item><item><title>staxrip简易使用指南</title><link>https://zqisme.github.io/post/staxrip-jian-yi-shi-yong-zhi-nan.html</link><description>&#13;
 ## 界面&#13;
 &#13;
 点击save project as template可将当前配置保存为模板并在启动时自动应用，open video source file可导入视频![](https://github.com/zqisme/picx-images-hosting/raw/master/20230926/屏幕截图(25).7j0psgrqoxw0.webp)    &#13;
