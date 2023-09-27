@@ -1,5 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Narcissu</title><link>https://zqisme.github.io</link><description>这是我的玫瑰🌹</description><copyright>Narcissu</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.com/zqisme/picx-images-hosting/raw/master/20230927/win10avatar.19wu06h2imf4.webp</url><title>avatar</title><link>https://zqisme.github.io</link></image><lastBuildDate>Wed, 27 Sep 2023 13:39:30 +0000</lastBuildDate><managingEditor>Narcissu</managingEditor><pubDate>Wed, 27 Sep 2023 13:39:30 +0000</pubDate><ttl>60</ttl><webMaster>Narcissu</webMaster><item><title> nx54关闭ipv6防火墙</title><link>https://zqisme.github.io/post/%20nx54-guan-bi-ipv6-fang-huo-qiang.html</link><description>&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Narcissu</title><link>https://zqisme.github.io</link><description>这是我的玫瑰🌹</description><copyright>Narcissu</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.com/zqisme/picx-images-hosting/raw/master/20230927/win10avatar.19wu06h2imf4.webp</url><title>avatar</title><link>https://zqisme.github.io</link></image><lastBuildDate>Wed, 27 Sep 2023 13:42:44 +0000</lastBuildDate><managingEditor>Narcissu</managingEditor><pubDate>Wed, 27 Sep 2023 13:42:44 +0000</pubDate><ttl>60</ttl><webMaster>Narcissu</webMaster><item><title>童年的终结 </title><link>https://zqisme.github.io/post/tong-nian-de-zhong-jie-%20.html</link><description>## [童年的终结 ](https://book.douban.com/subject/26390907/)&#13;
+&#13;
+## 童年是指什么，童年的终结背后的深意&#13;
+&#13;
+童年既可以指人类这个物种作为新进化物的童年也可以代表人类儿童的童年？童年的终结意味着人类的结束&#13;
+&#13;
+## 剧情&#13;
+&#13;
+外星人的飞船有一天降落到地球上，靠着绝对的力量兵不血刃统治了地球。</description><guid isPermaLink="true">https://zqisme.github.io/post/tong-nian-de-zhong-jie-%20.html</guid><pubDate>Wed, 27 Sep 2023 13:42:16 +0000</pubDate></item><item><title> nx54关闭ipv6防火墙</title><link>https://zqisme.github.io/post/%20nx54-guan-bi-ipv6-fang-huo-qiang.html</link><description>&#13;
 新华三nx54没有ipv6防火墙设置，不过可以通过`http://192.168.124.1/debug.asp` 进入调试页面，然后启用telnet。</description><guid isPermaLink="true">https://zqisme.github.io/post/%20nx54-guan-bi-ipv6-fang-huo-qiang.html</guid><pubDate>Wed, 27 Sep 2023 13:38:59 +0000</pubDate></item><item><title>计划</title><link>https://zqisme.github.io/post/ji-hua.html</link><description>&#13;
 ## 阅读&#13;
 &#13;
