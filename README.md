@@ -2,4 +2,6 @@
 ====
 
 **<p align="center">~ have a nice day ~</p>**
-![](https://github.com/zqisme/picx-images-hosting/raw/master/20230927/A-Kite-(1998)-(BDRip-1440x1076p-x265-HEVC-FLACx2-2.0x2)(Dual-Audio)[sxales].mkv_snapshot_19.15_[2021.05.10_21.51.03].6rm3usa9a0g0.webp)
+<div align=center>
+	<img src="https://github.com/zqisme/picx-images-hosting/raw/master/20230927/A-Kite.7bbccxh005g0.webp"/>
+</div>
