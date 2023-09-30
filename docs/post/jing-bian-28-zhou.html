@@ -12,7 +12,8 @@
         else if(localStorage.getItem("meek_theme")=="light"){document.getElementsByTagName("html")[0].attributes.getNamedItem("data-color-mode").value="light";}
     </script>
     
-<title>Narcissu</title>
+<title>惊变28周</title>
+
 
 </head>
 <style>
@@ -35,153 +36,83 @@ body{
 </style>
 
 <style>
-h1 a:not([href]){color:inherit;text-decoration:none;vertical-align: bottom;font-size:40px;font-family:Monaco;}
+h1 a:not([href]){color:inherit;text-decoration:none;vertical-align: bottom;font-size:40px;}
 .title-right{display:flex;margin:auto 0 0 auto;}
-.title-right button{margin-right:8px;padding:16px;}
-
-.subnav-search{margin-top:8px;margin-right:8px;}
-.subnav-search-input{width:160px;border-top-right-radius:0px;border-bottom-right-radius:0px;}
-.subnav-search button{padding:5px 8px;border-top-left-radius:0px;border-bottom-left-radius:0px;}
-
-.title-right .circle{padding: 14px 16px;}
-
-.SideNav{min-width: 360px;}
-.SideNav-icon{margin-right: 16px}
-.SideNav-item .Label{color: #fff;margin-left:8px;}
-@media (max-width: 767px) {
-    body { padding: 8px;}
-    h1 a:not([href]){font-size:24px;}
-    .subnav-search form{display:none;}
-    .subnav-search svg{display:none;}
-    #buttonRSS{display:none;}
-    .SideNav-item .listLabels{display:none;}
-}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 767px) {body {padding: 8px;}}
 </style>
+
+
 
 
 <body>
     <div id="header">
 <h1>
-    <img src="https://github.com/zqisme/picx-images-hosting/raw/master/20230927/win10avatar.19wu06h2imf4.webp" size="64" height="64" width="64" class="avatar circle" id="avatarImg">
-    <a>Narcissu</a>
+    <a>惊变28周</a>
 </h1>
 <div class="title-right">
-    <div class="subnav-search">
-        <form action="https://www.google.com/search" method="get" target="_blank">
-            <input type="hidden" name="q" value="site:https://zqisme.github.io">
-            <input type="search" name="q" class="form-control subnav-search-input float-left" aria-label="Search site" value="">
-            <button class="btn float-left" type="submit">搜索</button>
-        </form>
-        <svg class="subnav-search-icon octicon octicon-search" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
-            <path id="searchSVG" fill-rule="evenodd" d=""></path>
-        </svg>
-    </div>
-    
-    <a href="/rss.xml" target="_blank"><button id="buttonRSS" class="btn btn-invisible circle" title="RSS">
-        <svg class="octicon" width="16" height="16" >
-            <path id="pathRSS" fill-rule="evenodd"></path>
+
+    <a href="/"><button id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd" d="M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z"></path>
         </svg>
     </button></a>
-    <button class="btn btn-invisible circle" onclick="modeSwitch()" title="切换主题">
+
+    <a href="https://github.com/zqisme/zqisme.github.io/issues/9" target="_blank"><button class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
+        </svg>
+    </button></a>
+
+    <button class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
         <svg class="octicon" width="16" height="16" >
             <path id="themeSwitch" fill-rule="evenodd"></path>
         </svg>
     </button>
+
 </div>
 </div>
     <div id="content">
-<div style="margin-bottom: 16px;">这是我的玫瑰🌹</div>
-<nav class="SideNav border">
-<a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/ji-hua.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop1" d=""></path>
-        </svg>
-        <span>计划</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label" style="background-color:#d876e3">其他</span>
-        <span class="Label" style="background-color:#A333D0">2023-09-27</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/jing-bian-28-zhou.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span>惊变28周</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label" style="background-color:#0075ca">想法</span>
-        <span class="Label" style="background-color:#A333D0">2023-09-30</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/zui-zhong-huan-xiang-7-zhong-zhi-ban.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span>最终幻想7重制版</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label" style="background-color:#0075ca">想法</span>
-        <span class="Label" style="background-color:#A333D0">2023-09-28</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/tong-nian-de-zhong-jie-%20.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span>童年的终结 </span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label" style="background-color:#0075ca">想法</span>
-        <span class="Label" style="background-color:#A333D0">2023-09-27</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/%20nx54-guan-bi-ipv6-fang-huo-qiang.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span> nx54关闭ipv6防火墙</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label" style="background-color:#008672">记录</span>
-        <span class="Label" style="background-color:#A333D0">2023-09-27</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/kan-ke-de-github-bo-ke-zhi-lu.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span>坎坷的github博客之路</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label" style="background-color:#d876e3">其他</span>
-        <span class="Label" style="background-color:#A333D0">2023-09-27</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/ru-he-yue-du-yi-ben-shu.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span>如何阅读一本书</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label" style="background-color:#0075ca">想法</span>
-        <span class="Label" style="background-color:#A333D0">2023-09-27</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/staxrip-jian-yi-shi-yong-zhi-nan.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span>staxrip简易使用指南</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label" style="background-color:#008672">记录</span>
-        <span class="Label" style="background-color:#A333D0">2023-09-27</span>
-    </div>
-</a>
-</nav>
+<div class="markdown-body" id="postBody">
+<h2 id="user-content-熊孩子安迪和泰姆的故事"><a class="heading-link" href="#熊孩子安迪和泰姆的故事">熊孩子安迪和泰姆的故事<span aria-hidden="true" class="octicon octicon-link"></span></a></h2>
+<h2 id="user-content-背景"><a class="heading-link" href="#背景">背景<span aria-hidden="true" class="octicon octicon-link"></span></a></h2>
+<p>英国全岛被僵尸病毒摧毁，美国带领北约入驻伦敦，在感染发生28周后开始重建工作。</p>
+<h2 id="user-content-剧情"><a class="heading-link" href="#剧情">剧情<span aria-hidden="true" class="octicon octicon-link"></span></a></h2>
+<p>开头道恩夫妻一行人躲在一栋屋子里因为一个熊孩子导致团灭，只有道恩活了下来。28周后伦敦重建，道恩接回了在西班牙避难的儿女，安迪和泰姆。他们因为思念妈妈跑回了隔离区外的老家，遇到了本该死去的妈妈艾丽丝—携带病毒的感染者。道恩做贼心虚偷偷去看望艾丽丝然后被感染在医疗中心开启无双。情况逐渐失控，美军下达了红色代码开始了对平民的无差别攻击。因为道恩和泰姆身上可能存在治愈病毒的基因医疗指挥官希拉决定在道尔中士的帮助下带着他们逃出英伦岛。在丧尸的威胁和军方的狙杀下最后只有泰姆带着被咬伤的安迪一起乘直升机逃离了，影片的结尾是坠毁的直升机以及向埃菲尔铁塔奔涌的丧尸。</p>
+<h2 id="user-content-吐槽"><a class="heading-link" href="#吐槽">吐槽<span aria-hidden="true" class="octicon octicon-link"></span></a></h2>
+<p>作为一部评价非常一般的电影说实话看完并没有什么过多想法，但是还是有些想吐槽的地方</p>
+<ul>
+<li>
+<p>在英国的驻扎的美军发动了红色代码行动，动用燃烧弹毒气弹无差别屠杀平民，这是在黑米国吧。。一想这是英国的电影这也很合理。</p>
+</li>
+<li>
+<p>艾丽丝在丧尸群中是怎么活下来的并且几乎毫发无伤</p>
+</li>
+<li>
+<p>道恩一张卡随意通行有着丧尸感染危险的医疗中心，并且没被发现（竟然没人看守？）</p>
+</li>
+<li>
+<p>道恩变成丧尸后像自带gps一样孩子走到哪跟到哪</p>
+</li>
+<li>
+<p>一家人的破事害了所有人，格局有点小家子气</p>
+</li>
+<li>
+<p>将平民聚集在一个隔离区并从外面上锁（然而门被丧尸一拍就开了）</p>
+</li>
+</ul>
+<h2 id="user-content-其他"><a class="heading-link" href="#其他">其他<span aria-hidden="true" class="octicon octicon-link"></span></a></h2>
+<p><a href="https://movie.douban.com/celebrity/1022562/" rel="nofollow">罗丝·伯恩</a> 太漂亮了吧一眼被吸引</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/zqisme/picx-images-hosting/raw/master/20230930/p1156484892.6nkh8k7aesk0.webp"><img src="https://github.com/zqisme/picx-images-hosting/raw/master/20230930/p1156484892.6nkh8k7aesk0.webp" alt="" style="max-width: 100%;"></a></p>
+
+</div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
 </div>
     <div id="footer">Copyright © <span id="year"></span> <a href="https://zqisme.github.io"> Narcissu </a><p>  <span id="runday"></span>Powered by <a href="https://github.com/Meekdai/Gmeek" target="_blank">Gmeek</a></p>
 
@@ -231,19 +162,45 @@ console.log("\n %c Gmeek v2.4 %c https://github.com/Meekdai/Gmeek \n\n", "color:
 </script>
 
 <script>
-document.getElementById("searchSVG").setAttribute("d",IconList["search"]);
-document.getElementById("pathRSS").setAttribute("d",IconList["rss"]);
-iconTOP=document.getElementsByClassName("svgTop1");
-iconPost=document.getElementsByClassName("svgTop0");
-for(var i=0;i<iconTOP.length;i++){
-    iconTOP[i].setAttribute("d",IconList["upload"]);
-    iconTOP[i].parentNode.style.color="red";
-}
-for(var i=0;i<iconPost.length;i++){
-    iconPost[i].setAttribute("d",IconList["post"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","zqisme/zqisme.github.io");
+    script.setAttribute("issue-term","title");
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else{script.setAttribute("theme","github-light");}
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
 }
 
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
 
 </script>
+
+
+
 
 </html>
