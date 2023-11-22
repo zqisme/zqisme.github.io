@@ -80,30 +80,30 @@ a.heading-link{color:inherit;text-decoration:none;}
 </div>
     <div id="content">
 <div class="markdown-body" id="postBody">
-<h2 id="user-content-界面"><a class="heading-link" href="#界面">界面<span aria-hidden="true" class="octicon octicon-link"></span></a></h2>
+<h2><a id="user-content-界面" class="anchor" aria-hidden="true" tabindex="-1" href="#界面"><span aria-hidden="true" class="octicon octicon-link"></span></a>界面</h2>
 <p>点击save project as template可将当前配置保存为模板并在启动时自动应用，open video source file可导入视频<a target="_blank" rel="noopener noreferrer" href="https://github.com/zqisme/picx-images-hosting/raw/master/20230926/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(25).7j0psgrqoxw0.webp"><img src="https://github.com/zqisme/picx-images-hosting/raw/master/20230926/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(25).7j0psgrqoxw0.webp" alt="" style="max-width: 100%;"></a></p>
 <p>apps栏有许多常用的压制工具</p>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/zqisme/picx-images-hosting/raw/master/20230926/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(27).21cixk9g4bkw.webp"><img src="https://github.com/zqisme/picx-images-hosting/raw/master/20230926/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(27).21cixk9g4bkw.webp" alt="" style="max-width: 100%;"></a></p>
 <p>vs filter鼠标左键点击可以添加各种vs滤镜，resize可以方便调整输出分辨率，nvenc（编码栏）点击可以选择输出的编码，mkv点击可以选择视频的容器</p>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/zqisme/picx-images-hosting/raw/master/20230926/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(26).1bitu32o9yn4.webp"><img src="https://github.com/zqisme/picx-images-hosting/raw/master/20230926/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(26).1bitu32o9yn4.webp" alt="" style="max-width: 100%;"></a></p>
-<h2 id="user-content-使用nvenc显卡加速编码"><a class="heading-link" href="#使用nvenc显卡加速编码">使用nvenc显卡加速编码<span aria-hidden="true" class="octicon octicon-link"></span></a></h2>
+<h2><a id="user-content-使用nvenc显卡加速编码" class="anchor" aria-hidden="true" tabindex="-1" href="#使用nvenc显卡加速编码"><span aria-hidden="true" class="octicon octicon-link"></span></a>使用nvenc显卡加速编码</h2>
 <p>edit profiles，点击add 选择nvencc h265为模板新建配置</p>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/zqisme/picx-images-hosting/raw/master/20230926/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(28).sr62q9hy0rk.webp"><img src="https://github.com/zqisme/picx-images-hosting/raw/master/20230926/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(28).sr62q9hy0rk.webp" alt="" style="max-width: 100%;"></a></p>
 <p>具体参数设置可参考<a href="https://vcb-s.nmm-hd.org" rel="nofollow">VCB-Studio教程</a>，以及<a href="https://github.com/rigaya/NVEnc/blob/master/NVEncC_Options.en.md">nvencc说明</a>，个人使用的是vbrq。</p>
-<h3 id="user-content-basic设置"><a class="heading-link" href="#basic设置">basic设置<span aria-hidden="true" class="octicon octicon-link"></span></a></h3>
+<h3><a id="user-content-basic设置" class="anchor" aria-hidden="true" tabindex="-1" href="#basic设置"><span aria-hidden="true" class="octicon octicon-link"></span></a>basic设置</h3>
 <p>preset quality=p7，depth选择10bit；为了最大兼容性考虑，tier选择main，level选择4</p>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/zqisme/picx-images-hosting/raw/master/20230926/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(31).67rukkaflu80.png"><img src="https://github.com/zqisme/picx-images-hosting/raw/master/20230926/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(31).67rukkaflu80.png" alt="" style="max-width: 100%;"></a></p>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/zqisme/picx-images-hosting/raw/master/20230926/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(30).4e956lilbj80.png"><img src="https://github.com/zqisme/picx-images-hosting/raw/master/20230926/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(30).4e956lilbj80.png" alt="" style="max-width: 100%;"></a></p>
-<h3 id="user-content-rate-control控制码率"><a class="heading-link" href="#rate-control控制码率">rate control控制码率<span aria-hidden="true" class="octicon octicon-link"></span></a></h3>
+<h3><a id="user-content-rate-control控制码率" class="anchor" aria-hidden="true" tabindex="-1" href="#rate-control控制码率"><span aria-hidden="true" class="octicon octicon-link"></span></a>rate control控制码率</h3>
 <p>vbrq模式需选中constant quality mode，为追求画质与体积的平衡个人设置为q25，nvenc multipass作用于单帧，用于控制码率及提升画面。个人选择2pass full，max qp可提升最大码率个人设置25，min qp设置1；最大码率设置为7000。</p>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/zqisme/picx-images-hosting/raw/master/20230926/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(32).2h2w2jh0ase0.webp"><img src="https://github.com/zqisme/picx-images-hosting/raw/master/20230926/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(32).2h2w2jh0ase0.webp" alt="" style="max-width: 100%;"></a></p>
-<h3 id="user-content-slice-decision"><a class="heading-link" href="#slice-decision">slice decision<span aria-hidden="true" class="octicon octicon-link"></span></a></h3>
+<h3><a id="user-content-slice-decision" class="anchor" aria-hidden="true" tabindex="-1" href="#slice-decision"><span aria-hidden="true" class="octicon octicon-link"></span></a>slice decision</h3>
 <p>设置b帧，nvencC最大只支持5，ref frames设置4，lookahead最大只支持32，bref mode选择each，似乎是因为bug， 启用b帧无法使用weightp</p>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/zqisme/picx-images-hosting/raw/master/20230926/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(33).7hu2xm8f16k0.webp"><img src="https://github.com/zqisme/picx-images-hosting/raw/master/20230926/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(33).7hu2xm8f16k0.webp" alt="" style="max-width: 100%;"></a></p>
 <p>至此完成nvenc hevc设置</p>
-<h2 id="user-content-vs滤镜使用"><a class="heading-link" href="#vs滤镜使用">vs滤镜使用<span aria-hidden="true" class="octicon octicon-link"></span></a></h2>
-<h3 id="user-content-vapoursynth-waifu2x-使用"><a class="heading-link" href="#vapoursynth-waifu2x-使用">
-</a><a href="https://github.com/Nlzy/vapoursynth-waifu2x-ncnn-vulkan/">vapoursynth-waifu2x</a> 使用<span aria-hidden="true" class="octicon octicon-link"></span></h3>
+<h2><a id="user-content-vs滤镜使用" class="anchor" aria-hidden="true" tabindex="-1" href="#vs滤镜使用"><span aria-hidden="true" class="octicon octicon-link"></span></a>vs滤镜使用</h2>
+<h3><a id="user-content-vapoursynth-waifu2x-使用" class="anchor" aria-hidden="true" tabindex="-1" href="#vapoursynth-waifu2x-使用"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+<a href="https://github.com/Nlzy/vapoursynth-waifu2x-ncnn-vulkan/">vapoursynth-waifu2x</a> 使用</h3>
 <pre><code>core.w2xnvk.Waifu2x(clip[, noise, scale, model, tile_size, gpu_id, gpu_thread, precision, tile_size_w, tile_size_h, tta])
 </code></pre>
 <p>需先转换格式为rgb32，编辑脚本导入mvf</p>
@@ -169,7 +169,7 @@ function utterancesTheme(theme){
     iframe.contentWindow.postMessage(message, 'https://utteranc.es');
 }
 
-console.log("\n %c Gmeek v2.5 %c https://github.com/Meekdai/Gmeek \n\n", "color: #fff; background-image: linear-gradient(90deg, rgb(47, 172, 178) 0%, rgb(45, 190, 96) 100%); padding:5px 1px;", "background-image: linear-gradient(90deg, rgb(45, 190, 96) 0%, rgb(255, 255, 255) 100%); padding:5px 0;");
+console.log("\n %c Gmeek v2.6 %c https://github.com/Meekdai/Gmeek \n\n", "color: #fff; background-image: linear-gradient(90deg, rgb(47, 172, 178) 0%, rgb(45, 190, 96) 100%); padding:5px 1px;", "background-image: linear-gradient(90deg, rgb(45, 190, 96) 0%, rgb(255, 255, 255) 100%); padding:5px 0;");
 </script>
 
 <script>
