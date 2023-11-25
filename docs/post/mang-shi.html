@@ -17,27 +17,14 @@
 
 </head>
 <style>
-body{
-    box-sizing: border-box;
-    min-width: 200px;
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 45px;
-    font-size: 16px;
-    font-family: sans-serif;
-    line-height: 1.25;
-}
-
-.avatar {transition: 0.8s;}
-.avatar:hover {transform: scale(1.15) rotate(360deg);}
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
 #header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
 #footer {margin-top:64px; text-align: center;font-size: small;}
 
 </style>
 
 <style>
-h1 a:not([href]){color:inherit;text-decoration:none;vertical-align: bottom;font-size:40px;}
-a.heading-link{color:inherit;text-decoration:none;}
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
 .title-right{display:flex;margin:auto 0 0 auto;}
 .title-right .circle{padding: 14px 16px;margin-right:8px;}
 #postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
@@ -45,7 +32,10 @@ a.heading-link{color:inherit;text-decoration:none;}
 #cmButton{height:48px;margin-top:48px;}
 #comments{margin-top:64px;}
 .g-emoji{font-size:24px;}
-@media (max-width: 767px) {body {padding: 8px;}}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
 </style>
 
 
@@ -53,9 +43,7 @@ a.heading-link{color:inherit;text-decoration:none;}
 
 <body>
     <div id="header">
-<h1>
-    <a>盲视</a>
-</h1>
+<span class="postTitle">盲视</span>
 <div class="title-right">
 
     <a href="/"><button id="buttonHome" class="btn btn-invisible circle" title="首页">
@@ -80,8 +68,8 @@ a.heading-link{color:inherit;text-decoration:none;}
 </div>
     <div id="content">
 <div class="markdown-body" id="postBody">
-<h1><a id="user-content-盲视-" class="anchor" aria-hidden="true" tabindex="-1" href="#盲视-"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://book.douban.com/subject/10608453/" rel="nofollow">盲视 </a></h1>
-<h2><a id="user-content-内容" class="anchor" aria-hidden="true" tabindex="-1" href="#内容"><span aria-hidden="true" class="octicon octicon-link"></span></a>内容</h2>
+<h1><a href="https://book.douban.com/subject/10608453/" rel="nofollow">盲视 </a></h1>
+<h2>内容</h2>
 <p>盲视的题材比较的杂糅，赛博朋克+吸血鬼+外星人+哲学。全书共四个章节，章节的标题也挺有意思的</p>
 <ul>
 <li>
@@ -99,7 +87,7 @@ a.heading-link{color:inherit;text-decoration:none;}
 </li>
 </ul>
 <p>因为萤火虫事件，主角一行人被派往追寻神秘的信号。经过漫长的飞行与休眠，他们终于发现行星大本以及隐藏起来的外星飞船？生物-罗夏。为了找出外星人的目的他们开始与罗夏接触，然而发现了一个震惊的事实。<em>罗夏虽然有着智力却无自我意识无法正常交流，而且人类的语言对他们天生便属于攻击</em>，冲突已无法避免。</p>
-<h2><a id="user-content-想法" class="anchor" aria-hidden="true" tabindex="-1" href="#想法"><span aria-hidden="true" class="octicon octicon-link"></span></a>想法</h2>
+<h2>想法</h2>
 <p>盲视说实话有点难读，不知是翻译问题还是什么，而且章节也很跳跃。</p>
 <p>书中有些地方比较有意思</p>
 <ul>
@@ -129,7 +117,6 @@ a.heading-link{color:inherit;text-decoration:none;}
 <p>到了书的最后，独自一人乘坐逃生舱飞回地球的席瑞，在漫长的旅途过程之中，录下了《盲视》这本书的所有内容。柏拉图的洞穴寓言说，洞穴里的囚徒只能看到外面的真实世界投在洞穴中的影子，并且误以为那是真实的世界。到了书的最后，我们读到的也并非是某种绝对客观的对于事件真相的描述，而这也只是他一个人，一个普通的基准人类，观察一群超人类和一个星际智能斗法的过程所留下的印象，就好比一个平凡的调查员所看到的克苏鲁在大海之上闪电映出的剪影。这是我们作为人类，有自我意识的人类的最根本的局限。</p>
 </blockquote>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/zqisme/picx-images-hosting/raw/master/20231016/s26851036.6ixz562wkj80.webp"><img src="https://github.com/zqisme/picx-images-hosting/raw/master/20231016/s26851036.6ixz562wkj80.webp" alt="" style="max-width: 100%;"></a></p>
-
 </div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
@@ -181,7 +168,7 @@ function utterancesTheme(theme){
     iframe.contentWindow.postMessage(message, 'https://utteranc.es');
 }
 
-console.log("\n %c Gmeek v2.6 %c https://github.com/Meekdai/Gmeek \n\n", "color: #fff; background-image: linear-gradient(90deg, rgb(47, 172, 178) 0%, rgb(45, 190, 96) 100%); padding:5px 1px;", "background-image: linear-gradient(90deg, rgb(45, 190, 96) 0%, rgb(255, 255, 255) 100%); padding:5px 0;");
+console.log("\n %c Gmeek main %c https://github.com/Meekdai/Gmeek \n\n", "color: #fff; background-image: linear-gradient(90deg, rgb(47, 172, 178) 0%, rgb(45, 190, 96) 100%); padding:5px 1px;", "background-image: linear-gradient(90deg, rgb(45, 190, 96) 0%, rgb(255, 255, 255) 100%); padding:5px 0;");
 </script>
 
 <script>

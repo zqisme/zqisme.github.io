@@ -17,27 +17,14 @@
 
 </head>
 <style>
-body{
-    box-sizing: border-box;
-    min-width: 200px;
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 45px;
-    font-size: 16px;
-    font-family: sans-serif;
-    line-height: 1.25;
-}
-
-.avatar {transition: 0.8s;}
-.avatar:hover {transform: scale(1.15) rotate(360deg);}
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
 #header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
 #footer {margin-top:64px; text-align: center;font-size: small;}
 
 </style>
 
 <style>
-h1 a:not([href]){color:inherit;text-decoration:none;vertical-align: bottom;font-size:40px;}
-a.heading-link{color:inherit;text-decoration:none;}
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
 .title-right{display:flex;margin:auto 0 0 auto;}
 .title-right .circle{padding: 14px 16px;margin-right:8px;}
 #postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
@@ -45,7 +32,10 @@ a.heading-link{color:inherit;text-decoration:none;}
 #cmButton{height:48px;margin-top:48px;}
 #comments{margin-top:64px;}
 .g-emoji{font-size:24px;}
-@media (max-width: 767px) {body {padding: 8px;}}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
 </style>
 
 
@@ -53,9 +43,7 @@ a.heading-link{color:inherit;text-decoration:none;}
 
 <body>
     <div id="header">
-<h1>
-    <a>光遇简谱手柄</a>
-</h1>
+<span class="postTitle">光遇简谱手柄</span>
 <div class="title-right">
 
     <a href="/"><button id="buttonHome" class="btn btn-invisible circle" title="首页">
@@ -80,11 +68,10 @@ a.heading-link{color:inherit;text-decoration:none;}
 </div>
     <div id="content">
 <div class="markdown-body" id="postBody">
-<h2><a id="user-content-蒲公英的约定" class="anchor" aria-hidden="true" tabindex="-1" href="#蒲公英的约定"><span aria-hidden="true" class="octicon octicon-link"></span></a>蒲公英的约定</h2>
+<h2>蒲公英的约定</h2>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/zqisme/picx-images-hosting/raw/master/20231024/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(45).4tg40kc07t40.webp"><img src="https://github.com/zqisme/picx-images-hosting/raw/master/20231024/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(45).4tg40kc07t40.webp" alt="" style="max-width: 100%;"></a></p>
-<h2><a id="user-content-布局" class="anchor" aria-hidden="true" tabindex="-1" href="#布局"><span aria-hidden="true" class="octicon octicon-link"></span></a>布局</h2>
+<h2>布局</h2>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/zqisme/picx-images-hosting/raw/master/20231025/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(43).5wrj4ypae5s0.webp"><img src="https://github.com/zqisme/picx-images-hosting/raw/master/20231025/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(43).5wrj4ypae5s0.webp" alt="" style="max-width: 100%;"></a></p>
-
 </div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
@@ -136,7 +123,7 @@ function utterancesTheme(theme){
     iframe.contentWindow.postMessage(message, 'https://utteranc.es');
 }
 
-console.log("\n %c Gmeek v2.6 %c https://github.com/Meekdai/Gmeek \n\n", "color: #fff; background-image: linear-gradient(90deg, rgb(47, 172, 178) 0%, rgb(45, 190, 96) 100%); padding:5px 1px;", "background-image: linear-gradient(90deg, rgb(45, 190, 96) 0%, rgb(255, 255, 255) 100%); padding:5px 0;");
+console.log("\n %c Gmeek main %c https://github.com/Meekdai/Gmeek \n\n", "color: #fff; background-image: linear-gradient(90deg, rgb(47, 172, 178) 0%, rgb(45, 190, 96) 100%); padding:5px 1px;", "background-image: linear-gradient(90deg, rgb(45, 190, 96) 0%, rgb(255, 255, 255) 100%); padding:5px 0;");
 </script>
 
 <script>

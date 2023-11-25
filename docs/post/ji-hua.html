@@ -17,27 +17,14 @@
 
 </head>
 <style>
-body{
-    box-sizing: border-box;
-    min-width: 200px;
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 45px;
-    font-size: 16px;
-    font-family: sans-serif;
-    line-height: 1.25;
-}
-
-.avatar {transition: 0.8s;}
-.avatar:hover {transform: scale(1.15) rotate(360deg);}
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
 #header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
 #footer {margin-top:64px; text-align: center;font-size: small;}
 
 </style>
 
 <style>
-h1 a:not([href]){color:inherit;text-decoration:none;vertical-align: bottom;font-size:40px;}
-a.heading-link{color:inherit;text-decoration:none;}
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
 .title-right{display:flex;margin:auto 0 0 auto;}
 .title-right .circle{padding: 14px 16px;margin-right:8px;}
 #postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
@@ -45,7 +32,10 @@ a.heading-link{color:inherit;text-decoration:none;}
 #cmButton{height:48px;margin-top:48px;}
 #comments{margin-top:64px;}
 .g-emoji{font-size:24px;}
-@media (max-width: 767px) {body {padding: 8px;}}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
 </style>
 
 
@@ -53,9 +43,7 @@ a.heading-link{color:inherit;text-decoration:none;}
 
 <body>
     <div id="header">
-<h1>
-    <a>计划</a>
-</h1>
+<span class="postTitle">计划</span>
 <div class="title-right">
 
     <a href="/"><button id="buttonHome" class="btn btn-invisible circle" title="首页">
@@ -80,19 +68,15 @@ a.heading-link{color:inherit;text-decoration:none;}
 </div>
     <div id="content">
 <div class="markdown-body" id="postBody">
-<h2><a id="user-content-阅读" class="anchor" aria-hidden="true" tabindex="-1" href="#阅读"><span aria-hidden="true" class="octicon octicon-link"></span></a>阅读</h2>
-<ul>
-<li>[x] <del><a href="https://book.douban.com/subject/10608453/" rel="nofollow">盲视 </a></del> <em>2023/09/27-2023/10/15</em>
-</li>
-<li>[ ] <a href="https://book.douban.com/subject/2284311/" rel="nofollow">苏菲的世界</a>  <em>2023/10/30</em>
-</li>
+<h2>阅读</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" id="" disabled="" class="task-list-item-checkbox" checked=""> <del><a href="https://book.douban.com/subject/10608453/" rel="nofollow">盲视 </a></del> <em>2023/09/27-2023/10/15</em></li>
+<li class="task-list-item"><input type="checkbox" id="" disabled="" class="task-list-item-checkbox"> <a href="https://book.douban.com/subject/2284311/" rel="nofollow">苏菲的世界</a>  <em>2023/10/30</em></li>
 </ul>
-<h2><a id="user-content-游戏" class="anchor" aria-hidden="true" tabindex="-1" href="#游戏"><span aria-hidden="true" class="octicon octicon-link"></span></a>游戏</h2>
-<ul>
-<li>[x] <del><a href="https://store.steampowered.com/app/1888930/The_Last_of_Us_Part_I/" rel="nofollow">最后生还者重制版</a></del>  <em>2023/09/27—2023/10/2</em>
-</li>
+<h2>游戏</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" id="" disabled="" class="task-list-item-checkbox" checked=""> <del><a href="https://store.steampowered.com/app/1888930/The_Last_of_Us_Part_I/" rel="nofollow">最后生还者重制版</a></del>  <em>2023/09/27—2023/10/2</em></li>
 </ul>
-
 </div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
@@ -144,7 +128,7 @@ function utterancesTheme(theme){
     iframe.contentWindow.postMessage(message, 'https://utteranc.es');
 }
 
-console.log("\n %c Gmeek v2.6 %c https://github.com/Meekdai/Gmeek \n\n", "color: #fff; background-image: linear-gradient(90deg, rgb(47, 172, 178) 0%, rgb(45, 190, 96) 100%); padding:5px 1px;", "background-image: linear-gradient(90deg, rgb(45, 190, 96) 0%, rgb(255, 255, 255) 100%); padding:5px 0;");
+console.log("\n %c Gmeek main %c https://github.com/Meekdai/Gmeek \n\n", "color: #fff; background-image: linear-gradient(90deg, rgb(47, 172, 178) 0%, rgb(45, 190, 96) 100%); padding:5px 1px;", "background-image: linear-gradient(90deg, rgb(45, 190, 96) 0%, rgb(255, 255, 255) 100%); padding:5px 0;");
 </script>
 
 <script>
