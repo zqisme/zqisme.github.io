@@ -6,7 +6,7 @@ on:
     types: [opened, edited]
   schedule:
     - cron: "0 16 * * *"
-
+    
 jobs:
   build:
     name: Generate blog
@@ -33,7 +33,7 @@ jobs:
         with:
           python-version: 3.8
 
-     - name: Clone source code
+      - name: Clone source code
         run: |
           GMEEK_VERSION=$(jq -r ".GMEEK_VERSION" config.json)
           git clone https://github.com/Meekdai/Gmeek.git /opt/Gmeek;
@@ -46,7 +46,7 @@ jobs:
           pip install --upgrade pip
           pip install -r /opt/Gmeek/requirements.txt
 
-      -- name: Generate new html
+      - name: Generate new html
         run: |
           cp -r ./* /opt/Gmeek/
           cd /opt/Gmeek/
@@ -68,7 +68,7 @@ jobs:
         uses: actions/upload-pages-artifact@v2
         with:
           path: 'docs/.'
-
+          
   deploy:
     name: Deploy blog
     runs-on: ubuntu-20.04
