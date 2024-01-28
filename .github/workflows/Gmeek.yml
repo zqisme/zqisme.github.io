@@ -4,14 +4,12 @@ on:
   workflow_dispatch:
   issues:
     types: [opened, edited]
-  schedule:
-    - cron: "0 16 * * *"
-    
+
 jobs:
   build:
     name: Generate blog
     runs-on: ubuntu-20.04
-    if: ${{ github.event.repository.owner.id == github.event.sender.id || github.event_name == 'schedule' }}
+    if: github.event.repository.owner.id == github.event.sender.id
     permissions: write-all
     steps:
       - name: Checkout
@@ -27,7 +25,6 @@ jobs:
           cat config.json
           echo "====== check config.josn end  ======"
           sudo apt-get install jq
-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -35,17 +32,11 @@ jobs:
 
       - name: Clone source code
         run: |
-          GMEEK_VERSION=$(jq -r ".GMEEK_VERSION" config.json)
-          git clone https://github.com/Meekdai/Gmeek.git /opt/Gmeek;
-          cd /opt/Gmeek/
-          lastTag=$(git describe --tags `git rev-list --tags --max-count=1`)
-          if [ $GMEEK_VERSION == 'last' ]; then git checkout $lastTag; else git checkout $GMEEK_VERSION; fi;
-
+          git clone -b $(jq -r ".GMEEK_VERSION" config.json) https://github.com/Meekdai/Gmeek.git /opt/Gmeek
       - name: Install dependencies
         run: |
           pip install --upgrade pip
           pip install -r /opt/Gmeek/requirements.txt
-
       - name: Generate new html
         run: |
           cp -r ./* /opt/Gmeek/
@@ -68,7 +59,7 @@ jobs:
         uses: actions/upload-pages-artifact@v2
         with:
           path: 'docs/.'
-          
+
   deploy:
     name: Deploy blog
     runs-on: ubuntu-20.04
