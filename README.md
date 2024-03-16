@@ -1,7 +1,6 @@
-**<p align="center">[MyBlog](https://zqisme.github.io)</p>**
-====
-
-**<p align="center">~ have a nice day ~</p>**
-<div align=center>
-	<img src="https://github.com/zqisme/picx-images-hosting/raw/master/20230927/A-Kite.7bbccxh005g0.webp"/>
-</div>
+# Narcissu :link: https://zqisme.github.io 
+### :page_facing_up: [13](https://zqisme.github.io/tag.html) 
+### :speech_balloon: 0 
+### :hibiscus: 12138 
+### :alarm_clock: 2024-03-17 01:30:48 
+### Powered by :heart: [Gmeek](https://github.com/Meekdai/Gmeek)
