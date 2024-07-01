@@ -4,7 +4,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
     <link rel="icon" href="https://github.com/zqisme/picx-images-hosting/raw/master/20230927/favicon-16x16.6pf1gh7l7b00.png"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
@@ -93,8 +93,10 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>外星人的飞船有一天降落到地球上，靠着绝对的力量兵不血刃统治了地球。起初外星人并不以真面目示人，靠着代理人治理着地球，消灭了战争 和贫困，虽然不知道外星人的目的所在 但人类的未来似乎欣欣向荣。50年后外星人展现了真面貌，就像是中世纪描绘的恶魔，人类依旧平和的发展着。接着的某一天诞生了一名具有特别力量的儿童被称为超智慧的存在，这便是外星人的真正目的。人类的儿童一个个转变为超智慧，成为不同于人类的存在</p>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/zqisme/picx-images-hosting/raw/master/20230926/s29860753.1tkvz0dqr734.webp"><img src="https://github.com/zqisme/picx-images-hosting/raw/master/20230926/s29860753.1tkvz0dqr734.webp" alt="" style="max-width: 100%;"></a></p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
+
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
+
 </div>
     <div id="footer">Copyright © <span id="year"></span><a href="https://zqisme.github.io"> Narcissu </a>
 <p>
@@ -149,6 +151,8 @@ console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5p
 <script>
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
 
 function openComments(){
     cm=document.getElementById("comments");
