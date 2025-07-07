@@ -86,10 +86,10 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
     <div id="content">
 <div class="markdown-body" id="postBody"><p>新华三nx54没有ipv6防火墙设置，不过可以通过<code class="notranslate">http://192.168.124.1/debug.asp</code> 进入调试页面，然后启用telnet。</p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/zqisme/picx-images-hosting/raw/master/20230927/2023-09-27-21.14.34-192.168.124.1-e6823d256a8c.m8j1nfzykf4.webp"><img src="https://github.com/zqisme/picx-images-hosting/raw/master/20230927/2023-09-27-21.14.34-192.168.124.1-e6823d256a8c.m8j1nfzykf4.webp" alt="" style="max-width: 100%; height: auto;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/zqisme/picx-images-hosting/raw/master/20230927/2023-09-27-21.14.34-192.168.124.1-e6823d256a8c.m8j1nfzykf4.webp"><img src="https://github.com/zqisme/picx-images-hosting/raw/master/20230927/2023-09-27-21.14.34-192.168.124.1-e6823d256a8c.m8j1nfzykf4.webp" alt="" style="max-width: 100%;"></a></p>
 <p>cmd输入<code class="notranslate">telnet 192.168.124.1 15000</code> 登录路由器</p>
 <p>然后输入用户名以及密码，再输入<code class="notranslate">debugshell</code></p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/zqisme/picx-images-hosting/raw/master/20230927/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(38).1u882feaqvog.png"><img src="https://github.com/zqisme/picx-images-hosting/raw/master/20230927/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(38).1u882feaqvog.png" alt="" style="max-width: 100%; height: auto;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/zqisme/picx-images-hosting/raw/master/20230927/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(38).1u882feaqvog.png"><img src="https://github.com/zqisme/picx-images-hosting/raw/master/20230927/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(38).1u882feaqvog.png" alt="" style="max-width: 100%;"></a></p>
 <p>依次输入</p>
 <pre class="notranslate"><code class="notranslate">ip6tables -F
 ip6tables -X
