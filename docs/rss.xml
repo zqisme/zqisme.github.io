@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Narcissu</title><link>https://zqisme.github.io</link><description>这是我的玫瑰🌹</description><copyright>Narcissu</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.com/zqisme/picx-images-hosting/raw/master/20230927/win10avatar.19wu06h2imf4.webp</url><title>avatar</title><link>https://zqisme.github.io</link></image><lastBuildDate>Fri, 18 Jul 2025 05:48:51 +0000</lastBuildDate><managingEditor>Narcissu</managingEditor><ttl>60</ttl><webMaster>Narcissu</webMaster><item><title>银翼杀手2049</title><link>https://zqisme.github.io/post/yin-yi-sha-shou-2049.html</link><description>断断续续的终于看完了银翼杀手2049，大概就是复制人的男主在调查复制人，然后发现一个自然降生的复制人，而他的记忆表现的似乎他就是那位独特的复制人。</description><guid isPermaLink="true">https://zqisme.github.io/post/yin-yi-sha-shou-2049.html</guid><pubDate>Fri, 18 Jul 2025 05:48:23 +0000</pubDate></item><item><title>寂静岭 f</title><link>https://zqisme.github.io/post/ji-jing-ling-%20f.html</link><description>## 简介
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Narcissu</title><link>https://zqisme.github.io</link><description>这是我的玫瑰🌹</description><copyright>Narcissu</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.com/zqisme/picx-images-hosting/raw/master/20230927/win10avatar.19wu06h2imf4.webp</url><title>avatar</title><link>https://zqisme.github.io</link></image><lastBuildDate>Sun, 07 Sep 2025 07:24:49 +0000</lastBuildDate><managingEditor>Narcissu</managingEditor><ttl>60</ttl><webMaster>Narcissu</webMaster><item><title>银翼杀手2049</title><link>https://zqisme.github.io/post/yin-yi-sha-shou-2049.html</link><description>断断续续的终于看完了银翼杀手2049，大概就是复制人的男主在调查复制人，然后发现一个自然降生的复制人，而他的记忆表现的似乎他就是那位独特的复制人。</description><guid isPermaLink="true">https://zqisme.github.io/post/yin-yi-sha-shou-2049.html</guid><pubDate>Fri, 18 Jul 2025 05:48:23 +0000</pubDate></item><item><title>寂静岭 f</title><link>https://zqisme.github.io/post/ji-jing-ling-%20f.html</link><description>## 简介
 &gt; 主人公是居住在群山环绕的日本乡村小镇·戎之丘的高中生·深水雏子。</description><guid isPermaLink="true">https://zqisme.github.io/post/ji-jing-ling-%20f.html</guid><pubDate>Tue, 18 Mar 2025 09:20:12 +0000</pubDate></item><item><title>所见所感</title><link>https://zqisme.github.io/post/suo-jian-suo-gan.html</link><description>## 2025-1
 **2025-1-11**  
 汉字的演变，从小篆到隶书
@@ -222,23 +222,23 @@ deepseek r1模型引发大轰动，英伟达股价暴跌。</description><guid i
 阅读前准备及阅读&#13;
 对于娱乐消遣可以采用检视阅读，对于学习应采用分析阅读&#13;
 &#13;
-首先大概了解下阅读的书（通过目录导言等），主动阅读（带着问题去阅读what why how）。</description><guid isPermaLink="true">https://zqisme.github.io/post/ru-he-yue-du-yi-ben-shu.html</guid><pubDate>Wed, 27 Sep 2023 02:40:52 +0000</pubDate></item><item><title>staxrip简易使用指南</title><link>https://zqisme.github.io/post/staxrip-jian-yi-shi-yong-zhi-nan.html</link><description>&#13;
-## 界面&#13;
-&#13;
-点击save project as template可将当前配置保存为模板并在启动时自动应用，open video source file可导入视频![](https://github.com/zqisme/picx-images-hosting/raw/master/20230926/屏幕截图(25).7j0psgrqoxw0.webp)    &#13;
-&#13;
-apps栏有许多常用的压制工具&#13;
-&#13;
-![](https://github.com/zqisme/picx-images-hosting/raw/master/20230926/屏幕截图(27).21cixk9g4bkw.webp)  &#13;
-&#13;
-vs filter鼠标左键点击可以添加各种vs滤镜，resize可以方便调整输出分辨率，nvenc（编码栏）点击可以选择输出的编码，mkv点击可以选择视频的容器&#13;
-&#13;
-![](https://github.com/zqisme/picx-images-hosting/raw/master/20230926/屏幕截图(26).1bitu32o9yn4.webp)&#13;
-&#13;
-## 使用nvenc显卡加速编码&#13;
-&#13;
-edit profiles，点击add 选择nvencc h265为模板新建配置&#13;
-&#13;
-![](https://github.com/zqisme/picx-images-hosting/raw/master/20230926/屏幕截图(28).sr62q9hy0rk.webp)&#13;
-&#13;
+首先大概了解下阅读的书（通过目录导言等），主动阅读（带着问题去阅读what why how）。</description><guid isPermaLink="true">https://zqisme.github.io/post/ru-he-yue-du-yi-ben-shu.html</guid><pubDate>Wed, 27 Sep 2023 02:40:52 +0000</pubDate></item><item><title>staxrip简易使用指南</title><link>https://zqisme.github.io/post/staxrip-jian-yi-shi-yong-zhi-nan.html</link><description>
+## 界面
+
+点击save project as template可将当前配置保存为模板并在启动时自动应用，open video source file可导入视频![](https://github.com/zqisme/picx-images-hosting/raw/master/20230926/屏幕截图(25).7j0psgrqoxw0.webp)    
+
+apps栏有许多常用的压制工具
+
+![](https://github.com/zqisme/picx-images-hosting/raw/master/20230926/屏幕截图(27).21cixk9g4bkw.webp)  
+
+vs filter鼠标左键点击可以添加各种vs滤镜，resize可以方便调整输出分辨率，nvenc（编码栏）点击可以选择输出的编码，mkv点击可以选择视频的容器
+
+![](https://github.com/zqisme/picx-images-hosting/raw/master/20230926/屏幕截图(26).1bitu32o9yn4.webp)
+
+## 使用nvenc显卡加速编码
+
+edit profiles，点击add 选择nvencc h265为模板新建配置
+
+![](https://github.com/zqisme/picx-images-hosting/raw/master/20230926/屏幕截图(28).sr62q9hy0rk.webp)
+
 具体参数设置可参考[VCB-Studio教程](https://vcb-s.nmm-hd.org)，以及[nvencc说明](https://github.com/rigaya/NVEnc/blob/master/NVEncC_Options.en.md)，个人使用的是vbrq。</description><guid isPermaLink="true">https://zqisme.github.io/post/staxrip-jian-yi-shi-yong-zhi-nan.html</guid><pubDate>Wed, 27 Sep 2023 02:35:30 +0000</pubDate></item></channel></rss>

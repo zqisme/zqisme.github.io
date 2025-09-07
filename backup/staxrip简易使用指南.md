@@ -20,6 +20,10 @@ edit profiles，点击add 选择nvencc h265为模板新建配置
 具体参数设置可参考[VCB-Studio教程](https://vcb-s.nmm-hd.org)，以及[nvencc说明](https://github.com/rigaya/NVEnc/blob/master/NVEncC_Options.en.md)，个人使用的是vbrq。  
 
 ### basic设置
+   
+2025/9/7 更新
+
+因为nvenc更新了qvbr，目前使用的参数为 --avhw --qvbr 26 --codec h265 --preset p7 --output-depth 10 --profile main10 --multipass 2pass-full --qp-max 30:32:34 --qp-min 20:22:24 --aq --aq-strength 8 --bref-mode each --bframes 5 --ref 6 --lookahead 32
 
 preset quality=p7，depth选择10bit；为了最大兼容性考虑，tier选择main，level选择4
 
