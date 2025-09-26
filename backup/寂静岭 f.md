@@ -5,4 +5,8 @@
 
 ![Image](https://github.com/user-attachments/assets/87e9f4f4-bf4d-4849-8544-e5a955023d26)
 
-看了最新的预告，大体上还是avg类型吧。不知道游戏性如何
+看了最新的预告，大体上还是avg类型吧。不知道游戏性如何  
+  
+---  
+  
+游戏已于9月25号正式发售了，
