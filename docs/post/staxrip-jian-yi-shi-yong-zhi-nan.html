@@ -138,7 +138,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>mode选择qvbr，preset quality=p7，depth选择10bit；profile选择main10，level选择auto，vbr quality 一般建议设置为28及以上（越低质量越高）</p>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/c0223e4b-869c-4849-baef-b673eca3bd13"><img src="https://github.com/user-attachments/assets/c0223e4b-869c-4849-baef-b673eca3bd13" alt="Image" style="max-width: 100%;"></a></p>
 <h3>rate control码率控制</h3>
-<p>multipss选择2pass full，aq strength 设置8，max qp和min qp可以不设置，不如对码率范围有要求可以自行设置</p>
+<p>multipss选择2pass full，aq strength 设置8，max qp和min qp可以不设置，如对码率范围有要求可以自行设置</p>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/ba920a77-1f4f-4b6b-a2c1-2316e0dd2347"><img src="https://github.com/user-attachments/assets/ba920a77-1f4f-4b6b-a2c1-2316e0dd2347" alt="Image" style="max-width: 100%;"></a></p>
 <h3>slice decision</h3>
 <p>设置b帧，nvencC最大只支持5，ref frames设置6，lookahead最大只支持32，bref mode选择each，似乎是因为bug， 启用b帧无法使用weightp</p>

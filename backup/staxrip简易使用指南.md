@@ -36,7 +36,7 @@ mode选择qvbr，preset quality=p7，depth选择10bit；profile选择main10，le
 
 ### rate control码率控制  
   
-multipss选择2pass full，aq strength 设置8，max qp和min qp可以不设置，不如对码率范围有要求可以自行设置
+multipss选择2pass full，aq strength 设置8，max qp和min qp可以不设置，如对码率范围有要求可以自行设置
 
 ![Image](https://github.com/user-attachments/assets/ba920a77-1f4f-4b6b-a2c1-2316e0dd2347)
 
