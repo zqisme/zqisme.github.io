@@ -29,7 +29,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <style>
 .avatar {transition: 0.8s;width:64px;height:64px;object-fit: cover;}
 .avatar:hover{transform: scale(1.15) rotate(360deg);}
-#header h1 a{color:inherit;text-decoration:none;vertical-align: bottom;font-size:40px;font-family:Monaco;margin-left:8px;}
+.title-left a{color:inherit;text-decoration:none;vertical-align: bottom;font-size:40px;font-weight: bold;font-family:Monaco;margin-left:8px;}
 .title-right{display:flex;margin:auto 0 0 auto;}
 .title-right button{margin-right:8px;padding:16px;}
 .title-right .circle{padding: 14px 16px;}
@@ -55,8 +55,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 <body>
     <div id="header">
-<h1>
-    <img src="https://github.com/zqisme/picx-images-hosting/raw/master/20230927/win10avatar.19wu06h2imf4.webp" class="avatar circle" id="avatarImg" alt="avatar"><a class="blogTitle">Narcissu</a></h1>
+<div class="title-left">
+    <img src="https://github.com/zqisme/picx-images-hosting/raw/master/20230927/win10avatar.19wu06h2imf4.webp" class="avatar circle" id="avatarImg" alt="avatar"><a class="blogTitle">Narcissu</a></div>
 <div class="title-right">
     <a href="https://zqisme.github.io/tag.html" id="buttonSearch" class="btn btn-invisible circle" title="搜索">
         <svg class="octicon" width="16" height="16" >
@@ -80,9 +80,20 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <div id="content">
 <div style="margin-bottom: 16px;">这是我的玫瑰🌹</div>
 <nav class="SideNav border">
-<a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/%20nx54-guan-bi-ipv6-fang-huo-qiang.html">
+<a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/tong-nian-de-zhong-jie-%20.html">
     <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
+        </svg>
+        <span class="listTitle">童年的终结 </span>
+    </div>
+    <div class="listLabels">
+        
+        <span class="Label LabelName" style="background-color:#0075ca"><object><a style="color:#fff" href="tag.html#笔记">笔记</a></object></span>
+        <span class="Label LabelTime" style="background-color:#A333D0">2023-09-27</span>
+    </div>
+</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/%20nx54-guan-bi-ipv6-fang-huo-qiang.html">
+    <div class="d-flex flex-items-center">
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
         </svg>
         <span class="listTitle"> nx54关闭ipv6防火墙</span>
     </div>
@@ -93,7 +104,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     </div>
 </a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/kan-ke-de-github-bo-ke-zhi-lu.html">
     <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
         </svg>
         <span class="listTitle">坎坷的github博客之路</span>
     </div>
@@ -104,7 +115,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     </div>
 </a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/ru-he-yue-du-yi-ben-shu.html">
     <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
         </svg>
         <span class="listTitle">如何阅读一本书</span>
     </div>
@@ -115,7 +126,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     </div>
 </a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/staxrip-jian-yi-shi-yong-zhi-nan.html">
     <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
         </svg>
         <span class="listTitle">staxrip简易使用指南</span>
     </div>
@@ -143,7 +154,7 @@ if("09/27/2023"!=""){
     var startSite=new Date("09/27/2023");
     var diff=now.getTime()-startSite.getTime();
     var diffDay=Math.floor(diff/(1000*60*60*24));
-    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
 }
 </script></div>
 </body>
