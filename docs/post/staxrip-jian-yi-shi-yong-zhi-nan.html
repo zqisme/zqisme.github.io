@@ -151,7 +151,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/618c1ce6-c6f5-469c-be80-3797755df1a9"><img src="https://github.com/user-attachments/assets/618c1ce6-c6f5-469c-be80-3797755df1a9" alt="Image" style="max-width: 100%;"></a></p>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/6cf6febe-b3c9-48ba-ac50-df81783c3ee5"><img src="https://github.com/user-attachments/assets/6cf6febe-b3c9-48ba-ac50-df81783c3ee5" alt="Image" style="max-width: 100%;"></a></p>
 <p>vmaf测试</p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/a93b040c-c422-4a54-a2f1-eca18fe5825a"><img width="962" height="439" alt="Image" src="https://github.com/user-attachments/assets/a93b040c-c422-4a54-a2f1-eca18fe5825a" style="max-width: 100%; height: auto; max-height: 439px;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/a93b040c-c422-4a54-a2f1-eca18fe5825a"><img width="962" height="439" alt="Image" src="https://github.com/user-attachments/assets/a93b040c-c422-4a54-a2f1-eca18fe5825a" style="max-width: 100%; height: auto; max-height: 439px;; aspect-ratio: 962 / 439; background-color: var(--bgColor-muted); border-radius: 6px" class="js-gh-image-fallback"></a></p>
 <h2>vs滤镜使用</h2>
 <h3><a href="https://github.com/Nlzy/vapoursynth-waifu2x-ncnn-vulkan/">vapoursynth-waifu2x</a> 使用</h3>
 <pre class="notranslate"><code class="notranslate">core.w2xnvk.Waifu2x(clip[, noise, scale, model, tile_size, gpu_id, gpu_thread, precision, tile_size_w, tile_size_h, tta])
@@ -186,7 +186,7 @@ if("09/27/2023"!=""){
     var startSite=new Date("09/27/2023");
     var diff=now.getTime()-startSite.getTime();
     var diffDay=Math.floor(diff/(1000*60*60*24));
-    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
 }
 </script></div>
 </body>
@@ -231,6 +231,7 @@ document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
 function openComments(){
     cm=document.getElementById("comments");
     cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
     cmButton.innerHTML="loading";
     span=document.createElement("span");
     span.setAttribute("class","AnimatedEllipsis");
