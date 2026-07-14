@@ -6,4 +6,9 @@
 
 斩舰刀是真的帅  
 
-<img width="1280" height="960" alt="Image" src="https://github.com/user-attachments/assets/d5b3deca-a8b3-4fe1-9773-81bdc02bad53" />
+<img width="1280" height="960" alt="Image" src="https://github.com/user-attachments/assets/d5b3deca-a8b3-4fe1-9773-81bdc02bad53" />  
+
+**这系列打算游玩的作品**  
+ps2平台  ogs ogg  z  
+ps3平台  2og ogmd  
+ns平台  v
