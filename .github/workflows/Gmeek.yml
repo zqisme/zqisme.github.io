@@ -13,7 +13,9 @@ on:
         required: false
         default: ""
   issues:
-    types: [opened, edited]
+    # opened/edited/reopened/labeled/unlabeled/pinned/unpinned 走增量（只重建这一篇）
+    # closed/deleted/transferred 走全量（issue 已不可见，必须整体重建才能摘掉旧文章）
+    types: [opened, edited, reopened, closed, deleted, transferred, labeled, unlabeled, pinned, unpinned]
   schedule:
     - cron: "0 16 * * 0"      # 每周一次：UTC 周日 16:00 = 北京时间周一 00:00
 
@@ -71,12 +73,20 @@ jobs:
       - name: Generate new html
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # 手动填写的编号优先，issue 事件则回落到当次 issue
+          ISSUE_NUMBER: ${{ inputs.issue_number || github.event.issue.number }}
+          EVENT_ACTION: ${{ github.event.action }}
         run: |
           set -euo pipefail
+          # 关闭 / 删除 / 转移后 issue 已查不到，runOne 会直接返回并把旧文章留在站点上，
+          # 所以这些动作必须清空编号、改走全量重建
+          case "$EVENT_ACTION" in
+            closed|deleted|transferred) ISSUE_NUMBER="" ;;
+          esac
           # 排除 .git：别用仓库的 git 元数据覆盖 /opt/Gmeek/.git
           rsync -a --exclude=.git ./ /opt/Gmeek/
           cd /opt/Gmeek
-          python Gmeek.py "$GH_TOKEN" "${{ github.repository }}" --issue_number '${{ inputs.issue_number || github.event.issue.number }}'
+          python Gmeek.py "$GH_TOKEN" "${{ github.repository }}" --issue_number "$ISSUE_NUMBER"
           cp -a /opt/Gmeek/docs "${{ github.workspace }}"
           cp -a /opt/Gmeek/backup "${{ github.workspace }}"
           cp /opt/Gmeek/blogBase.json "${{ github.workspace }}"
