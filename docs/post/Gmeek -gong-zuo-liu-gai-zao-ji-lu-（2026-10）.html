@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark_colorblind" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://blog.meekdai.com/Gmeek/plugins/GmeekVercount.js'></script>
+    <link rel="icon" href="https://github.com/zqisme/picx-images-hosting/raw/master/20230927/favicon-16x16.6pf1gh7l7b00.png"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="记录一次博客构建流水线的整修：从反复失败的构建改到最小权限、增量优先的版本，顺带解决了「改配置不生效」和「关闭文章不下线」两个老问题。">
+<meta property="og:title" content="Gmeek 工作流改造记录（2026-10）">
+<meta property="og:description" content="记录一次博客构建流水线的整修：从反复失败的构建改到最小权限、增量优先的版本，顺带解决了「改配置不生效」和「关闭文章不下线」两个老问题。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://zqisme.github.io/post/Gmeek%20-gong-zuo-liu-gai-zao-ji-lu-%EF%BC%882026-10%EF%BC%89.html">
+<meta property="og:image" content="https://github.com/zqisme/picx-images-hosting/raw/master/20230927/win10avatar.19wu06h2imf4.webp">
+<title>Gmeek 工作流改造记录（2026-10）</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">Gmeek 工作流改造记录（2026-10）</h1>
+<div class="title-right">
+    <a href="https://zqisme.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/zqisme/zqisme.github.io/issues/31" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p>记录一次博客构建流水线的整修：从反复失败的构建改到最小权限、增量优先的版本，顺带解决了「改配置不生效」和「关闭文章不下线」两个老问题。</p>
+<h2>起因</h2>
+<p>2026-10-27 手动触发 <code class="notranslate">build Gmeek</code>（run #943），<code class="notranslate">Generate blog</code> 在 6 秒时失败：</p>
+<pre class="notranslate"><code class="notranslate">The version '3.8' with architecture 'x64' was not found for Ubuntu 26.04.
+</code></pre>
+<p>原因不是代码，而是环境漂移：</p>
+<ul>
+<li>workflow 里写死 <code class="notranslate">python-version: 3.8</code>（2024-10 已 EOL）；</li>
+<li><code class="notranslate">runs-on: ubuntu-latest</code> 已经迁到 <strong>Ubuntu 26.04</strong>，不再提供 3.8 的预编译包。</li>
+</ul>
+<p>回头看 Actions 记录，10-24 / 10-25 / 10-26 三次每日定时构建其实<strong>全部是 failure</strong>，只是一直没人察觉：<code class="notranslate">git push || echo</code> 把推送失败吞掉、日志全绿，站点停留在旧内容上。</p>
+<h2>修了什么</h2>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>问题</th>
+<th>原来</th>
+<th>现在</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>构建直接失败</td>
+<td><code class="notranslate">python 3.8</code> + <code class="notranslate">ubuntu-latest</code></td>
+<td><code class="notranslate">python 3.12</code> + 固定 <code class="notranslate">ubuntu-24.04</code></td>
+</tr>
+<tr>
+<td>Node 20 弃用</td>
+<td>checkout@v4 / configure-pages@v4 / setup-python@v5</td>
+<td><a class="user-mention notranslate" data-hovercard-type="user" data-hovercard-url="/users/v5/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/v5">@v5</a> / <a class="user-mention notranslate" data-hovercard-type="user" data-hovercard-url="/users/v6/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/v6">@v6</a> / <a class="user-mention notranslate" data-hovercard-type="user" data-hovercard-url="/users/v6/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/v6">@v6</a>（另 upload-pages-artifact <a class="user-mention notranslate" data-hovercard-type="user" data-hovercard-url="/users/v5/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/v5">@v5</a>、deploy-pages <a class="user-mention notranslate" data-hovercard-type="user" data-hovercard-url="/users/v5/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/v5">@v5</a>）</td>
+</tr>
+<tr>
+<td>权限过大</td>
+<td><code class="notranslate">permissions: write-all</code></td>
+<td>build 仅 <code class="notranslate">contents: write</code></td>
+</tr>
+<tr>
+<td>依赖漂移</td>
+<td><code class="notranslate">-r requirements.txt</code>（裸包名）</td>
+<td>追加 <code class="notranslate">"PyGithub&lt;3"</code> 兜住大版本</td>
+</tr>
+<tr>
+<td>装 jq 可能挂起</td>
+<td><code class="notranslate">sudo apt-get install jq</code></td>
+<td>先 <code class="notranslate">command -v jq</code> 判断，且带 <code class="notranslate">-y</code></td>
+</tr>
+<tr>
+<td>变量未加引号</td>
+<td><code class="notranslate">[ $GMEEK_VERSION == 'last' ]</code></td>
+<td><code class="notranslate">[ "$GMEEK_VERSION" = "last" ]</code></td>
+</tr>
+<tr>
+<td>漏拷隐藏文件</td>
+<td><code class="notranslate">cp -r ./*</code></td>
+<td><code class="notranslate">rsync -a --exclude=.git</code></td>
+</tr>
+<tr>
+<td>token 进命令行</td>
+<td>token 作为脚本参数</td>
+<td>先落到 <code class="notranslate">GH_TOKEN</code> 环境变量</td>
+</tr>
+<tr>
+<td>推送失败被吞</td>
+<td><code class="notranslate">git push || echo "nothing to push"</code></td>
+<td>有变更才提交，<code class="notranslate">pull --rebase</code> 后直接 push</td>
+</tr>
+<tr>
+<td>并发抢推</td>
+<td>无</td>
+<td>顶层 <code class="notranslate">concurrency</code>，构建可取消</td>
+</tr>
+<tr>
+<td>无超时</td>
+<td>无</td>
+<td>build 15 分钟 / deploy 10 分钟</td>
+</tr>
+<tr>
+<td>中途失败不中断</td>
+<td>无</td>
+<td>每个 <code class="notranslate">run</code> 加 <code class="notranslate">set -euo pipefail</code></td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<h2>三个值得记住的点</h2>
+<p><strong>① 固定 runner 镜像，别追 latest</strong></p>
+<p><code class="notranslate">ubuntu-latest</code> 不是一个稳定的名字，它跟着 GitHub 的迁移走。这次就是被 26.04 迁移打了个措手不及。固定成 <code class="notranslate">ubuntu-24.04</code> 之后，镜像升级由自己控制，代价是到期要手动跟进。</p>
+<p><strong>② 增量还是全量，取决于 Gmeek 会不会「看不见」这条 issue</strong></p>
+<p><code class="notranslate">runOne()</code> 里有一段：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">issue</span> <span class="pl-c1">=</span> <span class="pl-s1">self</span>.<span class="pl-c1">repo</span>.<span class="pl-c1">get_issue</span>(<span class="pl-en">int</span>(<span class="pl-s1">number_str</span>))
+<span class="pl-k">if</span> <span class="pl-s1">issue</span>.<span class="pl-c1">state</span> <span class="pl-c1">==</span> <span class="pl-s">"open"</span>:
+    ...<span class="pl-s1">重建这一篇</span>...
+<span class="pl-k">else</span>:
+    <span class="pl-en">print</span>(<span class="pl-s">"====== issue is closed ======"</span>)   <span class="pl-c"># 什么都不做</span></pre></div>
+<p>所以传了编号、但 issue 已关闭时它直接返回，旧文章会一直留在站点上。现在按动作分流：</p>
+<div class="highlight highlight-source-yaml"><pre class="notranslate"><span class="pl-s">case "$EVENT_ACTION" in</span>
+  <span class="pl-s">closed|deleted|transferred) ISSUE_NUMBER="" ;;   </span><span class="pl-c"><span class="pl-c">#</span> 清空编号 → 全量重建</span>
+<span class="pl-s">esac</span></pre></div>
+<p>编号为空时走 <code class="notranslate">runAll()</code>，而 <code class="notranslate">get_issues()</code> 只返回 open 的 issue，文章连同 HTML 一起消失。标签、置顶这类改动仍走增量，只重建受影响的那一篇。</p>
+<p><strong>③ 不要再吞掉 push 失败</strong></p>
+<p><code class="notranslate">git push || echo</code> 会让所有推送问题变成绿灯：日志好看、仓库没更新、站点还是旧的 —— 最难查的那种故障。现在推送失败会让 job 变红，deploy 也会跳过。</p>
+<h2>现在的触发行为</h2>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>操作</th>
+<th>路径</th>
+<th>生效时机</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新建 issue / 改标题正文</td>
+<td>增量</td>
+<td>立即</td>
+</tr>
+<tr>
+<td>加标签 / 置顶</td>
+<td>增量</td>
+<td>立即</td>
+</tr>
+<tr>
+<td>关闭 / 删除 / 转移 issue</td>
+<td>全量</td>
+<td>立即（文章下线）</td>
+</tr>
+<tr>
+<td>改 <code class="notranslate">config.json</code></td>
+<td>全量</td>
+<td>立即（新增 push 触发）</td>
+</tr>
+<tr>
+<td>手动 dispatch（可填编号）</td>
+<td>增量或全量</td>
+<td>立即</td>
+</tr>
+<tr>
+<td>定时</td>
+<td>全量</td>
+<td>每周一 00:00（北京时间）</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<h2>备忘</h2>
+<ul>
+<li><strong>发文必须带标签。</strong> <code class="notranslate">createPostHtml()</code> 里有 <code class="notranslate">issue["labels"][0]</code>，无标签的 issue 会让构建报 <code class="notranslate">IndexError</code>。日常发文用 <code class="notranslate">笔记</code> 即可。</li>
+<li><strong>内容没变时不会产生提交。</strong> <code class="notranslate">createFeedXml()</code> 在 RSS 除 <code class="notranslate">lastBuildDate</code> 外无变化时会沿用旧文件，schedule 触发也不重写 README。所以「定时构建没留下提交」是正常现象，不代表失败。</li>
+<li><strong><code class="notranslate">GITHUB_TOKEN</code> 的推送不会触发 workflow</strong>，因此 <code class="notranslate">push</code> 触发器不存在自循环风险。</li>
+<li>定时任务在仓库连续 60 天无活动后会被 GitHub 自动停用。</li>
+</ul>
+<h2>待办</h2>
+<ul>
+<li><code class="notranslate">config.json</code> 里的 <code class="notranslate">GMEEK_VERSION</code> 仍是 <code class="notranslate">last</code>，每次构建都执行上游最新代码。等日志里出现稳定版本号后钉死。</li>
+</ul></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://zqisme.github.io">Narcissu</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("09/27/2023"!=""){
+    var startSite=new Date("09/27/2023");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","zqisme/zqisme.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+
+
+</html>
