@@ -6,75 +6,100 @@ on:
     types: [opened, edited]
   schedule:
     - cron: "0 16 * * 0"      # 每周一次：UTC 周日 16:00 = 北京时间周一 00:00
-    
+
+# 串行化构建：定时任务与 issue 事件同时触发时，避免两个 job 抢着改写 docs/ 再抢推
+concurrency:
+  group: gmeek-build
+  cancel-in-progress: false
+
 jobs:
   build:
     name: Generate blog
-    runs-on: ubuntu-latest
+    # 固定镜像而不用 ubuntu-latest：latest 已迁到 26.04，其预编译 Python 不覆盖 3.12 以下的旧版本
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
     if: ${{ github.event.repository.owner.id == github.event.sender.id || github.event_name == 'schedule' }}
-    permissions: write-all
+    permissions:
+      contents: write          # 需要把生成的 docs/ 推回仓库
+      pages: write             # configure-pages 读取 Pages 配置
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0       # 完整历史，便于后面 git pull --rebase
 
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v6
 
-      - name: Get config.json
+      - name: Check config.json
         run: |
-          echo "====== check config.josn file ======"
+          set -euo pipefail
+          echo "====== config.json ======"
           cat config.json
-          echo "====== check config.josn end  ======"
-          sudo apt-get install jq
+          echo "====== end ======"
+          command -v jq >/dev/null || { sudo apt-get update && sudo apt-get install -y jq; }
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
-          python-version: 3.8
+          python-version: "3.12"
 
       - name: Clone source code
         run: |
-          GMEEK_VERSION=$(jq -r ".GMEEK_VERSION" config.json)
-          git clone https://github.com/Meekdai/Gmeek.git /opt/Gmeek;
-          cd /opt/Gmeek/
-          lastTag=$(git describe --tags `git rev-list --tags --max-count=1`)
-          if [ $GMEEK_VERSION == 'last' ]; then git checkout $lastTag; else git checkout $GMEEK_VERSION; fi;
+          set -euo pipefail
+          GMEEK_VERSION="$(jq -r '.GMEEK_VERSION // "last"' config.json)"
+          git clone https://github.com/Meekdai/Gmeek.git /opt/Gmeek
+          cd /opt/Gmeek
+          if [ "$GMEEK_VERSION" = "last" ]; then
+            GMEEK_VERSION="$(git describe --tags "$(git rev-list --tags --max-count=1)")"
+          fi
+          git checkout "$GMEEK_VERSION"
+          echo "Gmeek version: $GMEEK_VERSION ($(git rev-parse --short HEAD))"
 
       - name: Install dependencies
         run: |
-          pip install --upgrade pip
-          pip install -r /opt/Gmeek/requirements.txt
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          pip install -r /opt/Gmeek/requirements.txt "PyGithub<3"
 
       - name: Generate new html
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          cp -r ./* /opt/Gmeek/
-          cd /opt/Gmeek/
-          python Gmeek.py ${{ secrets.GITHUB_TOKEN }} ${{ github.repository }} --issue_number '${{ github.event.issue.number }}'
-          cp -a /opt/Gmeek/docs ${{ github.workspace }} 
-          cp -a /opt/Gmeek/backup ${{ github.workspace }} 
-          cp /opt/Gmeek/blogBase.json ${{ github.workspace }} 
-          
-      - name: update html
+          set -euo pipefail
+          cp -r . /opt/Gmeek/
+          cd /opt/Gmeek
+          python Gmeek.py "$GH_TOKEN" "${{ github.repository }}" --issue_number '${{ github.event.issue.number }}'
+          cp -a /opt/Gmeek/docs "${{ github.workspace }}"
+          cp -a /opt/Gmeek/backup "${{ github.workspace }}"
+          cp /opt/Gmeek/blogBase.json "${{ github.workspace }}"
+
+      - name: Update html
         run: |
-          git config --local user.email "$(jq -r ".email" config.json)"
+          set -euo pipefail
+          git config --local user.email "$(jq -r '.email' config.json)"
           git config --local user.name "${{ github.repository_owner }}"
-          git add .
-          git commit -a -m '🎉auto update by Gmeek action' || echo "nothing to commit"
-          git push || echo "nothing to push"
-          sleep 3
-          
+          git add -A
+          if git diff --cached --quiet; then
+            echo "no changes to commit"
+          else
+            git commit -m '🎉auto update by Gmeek action'
+            git pull --rebase --autostash
+            git push
+          fi
+
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: 'docs/.'
-          
+
   deploy:
     name: Deploy blog
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
     needs: build
     permissions:
-      contents: write
       pages: write
       id-token: write
     concurrency:
@@ -86,4 +111,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
