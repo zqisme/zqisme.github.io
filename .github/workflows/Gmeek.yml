@@ -1,16 +1,27 @@
 name: build Gmeek
 
 on:
+  # 改了站点配置或自定义静态资源时立即重建（Gmeek 自己的提交不碰这两个路径，不会自触发循环）
+  push:
+    paths:
+      - config.json
+      - static/**
   workflow_dispatch:
+    inputs:
+      issue_number:
+        description: "只重建指定 issue 编号（留空 = 全量重建）"
+        required: false
+        default: ""
   issues:
     types: [opened, edited]
   schedule:
     - cron: "0 16 * * 0"      # 每周一次：UTC 周日 16:00 = 北京时间周一 00:00
 
-# 串行化构建：定时任务与 issue 事件同时触发时，避免两个 job 抢着改写 docs/ 再抢推
+# 串行化构建：定时 / issue / push 同时触发时避免并发改写 docs/ 再抢推；
+# 取消排队中的旧任务不丢数据 —— 每次构建都从 issues 重新生成，推送是原子的
 concurrency:
   group: gmeek-build
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -18,19 +29,14 @@ jobs:
     # 固定镜像而不用 ubuntu-latest：latest 已迁到 26.04，其预编译 Python 不覆盖 3.12 以下的旧版本
     runs-on: ubuntu-24.04
     timeout-minutes: 15
-    if: ${{ github.event.repository.owner.id == github.event.sender.id || github.event_name == 'schedule' }}
+    if: ${{ github.event.repository.owner.id == github.event.sender.id || github.event_name == 'schedule' || github.event_name == 'push' }}
     permissions:
       contents: write          # 需要把生成的 docs/ 推回仓库
-      pages: write             # configure-pages 读取 Pages 配置
     steps:
       - name: Checkout
         uses: actions/checkout@v5
         with:
           fetch-depth: 0       # 完整历史，便于后面 git pull --rebase
-
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v6
 
       - name: Check config.json
         run: |
@@ -60,7 +66,6 @@ jobs:
       - name: Install dependencies
         run: |
           set -euo pipefail
-          python -m pip install --upgrade pip
           pip install -r /opt/Gmeek/requirements.txt "PyGithub<3"
 
       - name: Generate new html
@@ -68,9 +73,10 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
-          cp -r . /opt/Gmeek/
+          # 排除 .git：别用仓库的 git 元数据覆盖 /opt/Gmeek/.git
+          rsync -a --exclude=.git ./ /opt/Gmeek/
           cd /opt/Gmeek
-          python Gmeek.py "$GH_TOKEN" "${{ github.repository }}" --issue_number '${{ github.event.issue.number }}'
+          python Gmeek.py "$GH_TOKEN" "${{ github.repository }}" --issue_number '${{ inputs.issue_number || github.event.issue.number }}'
           cp -a /opt/Gmeek/docs "${{ github.workspace }}"
           cp -a /opt/Gmeek/backup "${{ github.workspace }}"
           cp /opt/Gmeek/blogBase.json "${{ github.workspace }}"
@@ -78,7 +84,8 @@ jobs:
       - name: Update html
         run: |
           set -euo pipefail
-          git config --local user.email "$(jq -r '.email' config.json)"
+          EMAIL="$(jq -r '.email // "github-actions[bot]@users.noreply.github.com"' config.json)"
+          git config --local user.email "$EMAIL"
           git config --local user.name "${{ github.repository_owner }}"
           git add -A
           if git diff --cached --quiet; then
