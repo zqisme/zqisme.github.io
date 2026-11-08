@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block pageKey %}archive{% endblock %}
+{% block bodyClass %}page-archive{% endblock %}
+{% block title %}归档 · {{ blogBase['title']|e }}{% endblock %}
+{% block description %}{{ blogBase['title']|e }} 的文章归档与全文搜索{% endblock %}
+{% block canonical %}{{ blogBase['homeUrl'] }}/tag.html{% endblock %}
+
+{% block head %}
+<meta name="robots" content="noindex, follow">
+<meta property="og:title" content="归档 · {{ blogBase['title']|e }}">
+<meta property="og:description" content="按标签筛选，或搜索全部文章。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ blogBase['homeUrl'] }}/tag.html">
+{% endblock %}
+
+{% block content %}
+<header class="page-head">
+    <h1 class="page-title">归档</h1>
+    <p class="page-sub">按标签筛选，或直接搜索标题与正文。</p>
+</header>
+
+<form class="search-box" role="search" onsubmit="return false;">
+    <svg class="icon search-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M15.7 13.3l-3.81-3.83A5.93 5.93 0 0 0 13 6c0-3.31-2.69-6-6-6S1 2.69 1 6s2.69 6 6 6c1.3 0 2.48-.41 3.47-1.11l3.83 3.81c.19.2.45.3.7.3.25 0 .52-.09.7-.3a.996.996 0 0 0 0-1.41v.01zM7 10.7c-2.59 0-4.7-2.11-4.7-4.7 0-2.59 2.11-4.7 4.7-4.7 2.59 0 4.7 2.11 4.7 4.7 0 2.59-2.11 4.7-4.7 4.7z" fill-rule="evenodd"></path></svg>
+    <label class="sr-only" for="searchInput">搜索文章</label>
+    <input id="searchInput" type="search" placeholder="搜索文章…" autocomplete="off" spellcheck="false">
+    <kbd title="按 / 快速聚焦搜索框">/</kbd>
+</form>
+
+<div class="tag-bar" id="tagBar" role="group" aria-label="按标签筛选">
+    <span class="tag-bar-loading">正在整理标签…</span>
+</div>
+
+<div class="list-head">
+    <h2 class="list-heading" id="archiveHeading">全部文章</h2>
+    <span class="list-count" id="archiveCount"></span>
+</div>
+
+<ul class="post-list" id="archiveList" aria-live="polite"></ul>
+<p class="empty-state" id="archiveLoading">正在加载文章…</p>
+<p class="empty-state" id="emptyState" hidden>没有找到匹配的文章，换个关键词试试。</p>
+
+<noscript>
+    <p class="empty-state">归档列表需要 JavaScript。可以先到 <a href="{{ blogBase['homeUrl'] }}/">首页</a> 或通过 <a href="{{ blogBase['homeUrl'] }}/rss.xml">RSS</a> 浏览全部文章。</p>
+</noscript>
+{% endblock %}

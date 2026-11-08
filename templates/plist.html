@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block pageKey %}home{% endblock %}
+{% block bodyClass %}page-home{% endblock %}
+{% block title %}{{ blogBase['title'] }}{% endblock %}
+{% block description %}{{ blogBase['subTitle']|e }}{% endblock %}
+{% block canonical %}{{ blogBase['homeUrl'] }}/{% endblock %}
+
+{% block head %}
+<meta property="og:title" content="{{ blogBase['title']|e }}">
+<meta property="og:description" content="{{ blogBase['subTitle']|e }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ blogBase['homeUrl'] }}/">
+<meta property="og:image" content="{{ blogBase['ogImage'] }}">
+<meta name="twitter:title" content="{{ blogBase['title']|e }}">
+<meta name="twitter:description" content="{{ blogBase['subTitle']|e }}">
+{% if blogBase['prevUrl'] != 'disabled' %}<link rel="prev" href="{{ blogBase['homeUrl'] }}{{ blogBase['prevUrl'] }}">{% endif %}
+{% if blogBase['nextUrl'] != 'disabled' %}<link rel="next" href="{{ blogBase['homeUrl'] }}{{ blogBase['nextUrl'] }}">{% endif %}
+{% endblock %}
+
+{% block style %}
+{{ blogBase['indexStyle'] }}
+{% endblock %}
+
+{% block content %}
+<h1 class="sr-only">{{ blogBase['title']|e }} · {{ blogBase['subTitle']|e }}</h1>
+<p class="tagline">{{ blogBase['subTitle']|e }}</p>
+
+<div class="list-head">
+    <h2 class="list-heading">最新文章</h2>
+    <span class="list-count">本页 {{ postListJson|length }} 篇</span>
+</div>
+
+<ul class="post-list">
+{% for num in postListJson %}
+    <li class="post-item">
+        <a class="post-link" href="{{ postListJson[num]['postUrl']|e }}">
+            <div class="post-text">
+                <h3 class="post-title">
+                    {% if postListJson[num]['top'] == 1 %}<span class="pin-badge">置顶</span>{% endif %}{{ postListJson[num]['postTitle']|e }}
+                </h3>
+                {% if postListJson[num]['description'] %}<p class="post-excerpt">{{ postListJson[num]['description']|e }}</p>{% endif %}
+            </div>
+            <div class="post-meta">
+                <time datetime="{{ postListJson[num]['createdDate'] }}">{{ postListJson[num]['createdDate']|replace('-', '.') }}</time>
+                {% for label in postListJson[num]['labels'] %}<span class="tag" style="--tag-color:{{ blogBase['labelColorDict'][label] }}">{{ label }}</span>{% endfor %}
+                {% if postListJson[num]['commentNum'] > 0 %}<span class="comment-count">{{ postListJson[num]['commentNum'] }} 条评论</span>{% endif %}
+            </div>
+        </a>
+    </li>
+{% endfor %}
+</ul>
+
+{% if blogBase['prevUrl'] != 'disabled' or blogBase['nextUrl'] != 'disabled' %}
+<nav class="pagination" aria-label="分页">
+    {% if blogBase['prevUrl'] == 'disabled' %}
+    <span class="page-link is-disabled" aria-disabled="true">← {{ i18n['Previous'] }}</span>
+    {% else %}
+    <a class="page-link" href="{{ blogBase['homeUrl'] }}{{ blogBase['prevUrl'] }}" rel="prev">← {{ i18n['Previous'] }}</a>
+    {% endif %}
+    {% if blogBase['nextUrl'] == 'disabled' %}
+    <span class="page-link is-disabled" aria-disabled="true">{{ i18n['Next'] }} →</span>
+    {% else %}
+    <a class="page-link" href="{{ blogBase['homeUrl'] }}{{ blogBase['nextUrl'] }}" rel="next">{{ i18n['Next'] }} →</a>
+    {% endif %}
+</nav>
+{% endif %}
+{% endblock %}
+
+{% block script %}
+{{ blogBase['indexScript'] }}
+{% endblock %}

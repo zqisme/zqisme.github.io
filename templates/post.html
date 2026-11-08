@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block pageKey %}post{% endblock %}
+{% block bodyClass %}page-post{% endblock %}
+{% block title %}{{ blogBase['postTitle']|e }} · {{ blogBase['title']|e }}{% endblock %}
+{% block description %}{{ blogBase['description']|e }}{% endblock %}
+{% block canonical %}{{ blogBase['postUrl'] }}{% endblock %}
+
+{% block head %}
+<meta property="og:title" content="{{ blogBase['postTitle']|e }}">
+<meta property="og:description" content="{{ blogBase['description']|e }}">
+<meta property="og:type" content="article">
+<meta property="og:url" content="{{ blogBase['postUrl'] }}">
+<meta property="og:image" content="{{ blogBase['ogImage'] }}">
+<meta name="twitter:title" content="{{ blogBase['postTitle']|e }}">
+<meta name="twitter:description" content="{{ blogBase['description']|e }}">
+{{ blogBase['head'] }}
+{% endblock %}
+
+{% block style %}
+{{ blogBase['style'] }}
+{% endblock %}
+
+{% block headerActions %}
+{% if blogBase['showPostSource'] == 1 %}
+<a class="icon-button" href="{{ blogBase['postSourceUrl'] }}" target="_blank" rel="noopener" title="在 GitHub 上查看 / 讨论这篇" aria-label="在 GitHub 上查看 / 讨论这篇">
+    <svg class="icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z" fill-rule="evenodd"></path></svg>
+</a>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<article class="post">
+    <header class="post-header">
+        <h1 class="post-title">{{ blogBase['postTitle']|e }}</h1>
+        <div class="post-meta" id="postMeta" data-post-url="{{ blogBase['postUrl'] }}"></div>
+    </header>
+
+    <details class="toc" id="toc" hidden>
+        <summary>目录 <span class="toc-count" id="tocCount"></span></summary>
+        <nav class="toc-list" id="tocList" aria-label="文章目录"></nav>
+    </details>
+
+    <div class="prose markdown-body" id="postBody">{{ blogBase['postBody'] }}</div>
+    <!-- post-body-end -->
+
+    {% if blogBase['bottomText'] %}<p class="post-bottom-text">{{ blogBase['bottomText']|e }}</p>{% endif %}
+
+    {% if blogBase['showPostSource'] == 1 %}
+    <p class="post-source">本文首发于 <a href="{{ blogBase['postSourceUrl'] }}" target="_blank" rel="noopener">GitHub Issue</a>，欢迎在那里补充讨论。</p>
+    {% endif %}
+
+    <nav class="post-nav" id="postNav" aria-label="上一篇与下一篇"></nav>
+
+    {% if blogBase['needComment'] == 1 %}
+    <section class="comments-section" aria-label="评论">
+        <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">
+            <span>加载评论{% if blogBase['commentNum'] > 0 %}<span class="counter">{{ blogBase['commentNum'] }}</span>{% endif %}</span>
+            <span class="comment-note">由 utterances 提供，需要登录 GitHub</span>
+        </button>
+        <div class="comments" id="comments"></div>
+    </section>
+    {% endif %}
+</article>
+{% endblock %}
+
+{% block script %}
+{{ blogBase['style'] }}
+<script>
+{% if blogBase['needComment'] == 1 %}
+function openComments() {
+    var cm = document.getElementById("comments");
+    var cmButton = document.getElementById("cmButton");
+    cmButton.disabled = true;
+    cmButton.querySelector("span").textContent = "正在加载评论…";
+
+    var script = document.createElement("script");
+    script.setAttribute("src", "https://utteranc.es/client.js");
+    script.setAttribute("repo", "{{ blogBase['repoName'] }}");
+    script.setAttribute("issue-term", "title");
+    var mode = currentThemeMode();
+    if (mode === "dark") { script.setAttribute("theme", "dark-blue"); }
+    else if (mode === "light") { script.setAttribute("theme", "github-light"); }
+    else { script.setAttribute("theme", "preferred-color-scheme"); }
+    script.setAttribute("crossorigin", "anonymous");
+    script.setAttribute("async", "");
+    cm.appendChild(script);
+
+    var int = setInterval(function () {
+        var utterances = document.getElementsByClassName("utterances");
+        if (utterances.length === 1 && utterances[0].style.height !== "") {
+            utterancesLoad = 1;
+            clearInterval(int);
+            cmButton.style.display = "none";
+        }
+    }, 200);
+}
+{% endif %}
+</script>
+{{ blogBase['script'] }}
+{% endblock %}

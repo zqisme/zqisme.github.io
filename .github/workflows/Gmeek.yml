@@ -1,11 +1,14 @@
 name: build Gmeek
 
 on:
-  # 改了站点配置或自定义静态资源时立即重建（Gmeek 自己的提交不碰这两个路径，不会自触发循环）
+  # 改了站点配置、主题模板或自定义静态资源时立即重建（Gmeek 自己的提交不碰这些路径，不会自触发循环）
   push:
     paths:
       - config.json
       - static/**
+      - templates/**
+      - tools/**
+      - .github/workflows/Gmeek.yml
   workflow_dispatch:
     inputs:
       issue_number:
@@ -87,9 +90,17 @@ jobs:
           rsync -a --exclude=.git ./ /opt/Gmeek/
           cd /opt/Gmeek
           python Gmeek.py "$GH_TOKEN" "${{ github.repository }}" --issue_number "$ISSUE_NUMBER"
-          cp -a /opt/Gmeek/docs "${{ github.workspace }}"
-          cp -a /opt/Gmeek/backup "${{ github.workspace }}"
-          cp /opt/Gmeek/blogBase.json "${{ github.workspace }}"
+          # 用 rsync 而不是 cp -a：cp 在目标 docs/ 已存在时会嵌套成 docs/docs，
+          # 增量构建下尤其容易悄悄发生；rsync --delete 顺带清掉已删除文章。
+          mkdir -p "${{ github.workspace }}/docs" "${{ github.workspace }}/backup"
+          rsync -a --delete /opt/Gmeek/docs/ "${{ github.workspace }}/docs/"
+          rsync -a --delete /opt/Gmeek/backup/ "${{ github.workspace }}/backup/"
+          cp /opt/Gmeek/blogBase.json "${{ github.workspace }}/blogBase.json"
+
+      - name: Post-process SEO and search index
+        run: |
+          set -euo pipefail
+          node tools/seo.mjs
 
       - name: Update html
         run: |

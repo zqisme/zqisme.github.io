@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-color-mode="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>页面走丢了 · Narcissu</title>
+<link rel="icon" href="https://github.com/zqisme/picx-images-hosting/raw/master/20230927/favicon-16x16.6pf1gh7l7b00.png">
+<link rel="stylesheet" href="/assets/site.css">
+<script>
+(function () {
+    var saved = "light";
+    try { saved = localStorage.getItem("meek_theme") || "light"; } catch (e) {}
+    if (saved !== "light" && saved !== "dark" && saved !== "auto") { saved = "light"; }
+    document.documentElement.setAttribute("data-color-mode", saved);
+})();
+</script>
+<style>
+.notfound { padding: 5rem 0 4rem; max-width: 34rem; }
+.notfound-code { margin: 0 0 .6rem; color: var(--subtle); font-family: var(--font-mono); font-size: .8rem; letter-spacing: .18em; }
+.notfound-title { margin: 0 0 1rem; font-family: var(--font-serif); font-size: clamp(1.7rem, 5vw, 2.4rem); font-weight: 600; line-height: 1.35; }
+.notfound-text { margin: 0 0 2rem; color: var(--muted); line-height: 1.8; }
+.notfound-actions { display: flex; flex-wrap: wrap; gap: .7rem; }
+@media (max-width: 640px) { .notfound { padding: 3rem 0 2.5rem; } }
+</style>
+</head>
+<body data-page="notfound" class="page-home">
+<a class="skip-link" href="#content">跳到正文</a>
+<div class="wrap">
+<header class="site-header">
+    <a class="brand" href="/" aria-label="Narcissu 首页">
+        <img class="brand-avatar" src="https://github.com/zqisme/picx-images-hosting/raw/master/20230927/win10avatar.19wu06h2imf4.webp" width="56" height="56" alt="">
+        <span class="brand-copy">
+            <span class="brand-title">Narcissu</span>
+            <span class="brand-sub">这是我的玫瑰🌹</span>
+        </span>
+    </a>
+    <nav class="header-actions" aria-label="站点操作">
+        <a class="icon-button" href="/tag.html" title="搜索与归档" aria-label="搜索与归档">
+            <svg class="icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M15.7 13.3l-3.81-3.83A5.93 5.93 0 0 0 13 6c0-3.31-2.69-6-6-6S1 2.69 1 6s2.69 6 6 6c1.3 0 2.48-.41 3.47-1.11l3.83 3.81c.19.2.45.3.7.3.25 0 .52-.09.7-.3a.996.996 0 0 0 0-1.41v.01zM7 10.7c-2.59 0-4.7-2.11-4.7-4.7 0-2.59 2.11-4.7 4.7-4.7 2.59 0 4.7 2.11 4.7 4.7 0 2.59-2.11 4.7-4.7 4.7z" fill-rule="evenodd"></path></svg>
+        </a>
+        <button class="icon-button" type="button" id="themeBtn" aria-label="切换主题">
+            <svg class="icon" viewBox="0 0 16 16" aria-hidden="true"><path id="themeIcon" fill-rule="evenodd"></path></svg>
+        </button>
+    </nav>
+</header>
+
+<main id="content" class="main">
+    <div class="notfound">
+        <p class="notfound-code">404 · NOT FOUND</p>
+        <h1 class="notfound-title">这一页已经消失在雾里。</h1>
+        <p class="notfound-text">链接可能写错了，或者这篇文章已经被作者收回。</p>
+        <div class="notfound-actions">
+            <a class="page-link" href="/">← 回到首页</a>
+            <a class="page-link" href="/tag.html">搜索文章</a>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer" id="footer">
+    <div class="footer-main"><span>© <span id="copyrightYear"></span> Narcissu</span></div>
+    <nav class="footer-links" aria-label="页脚">
+        <a href="/tag.html">归档</a>
+        <a href="/rss.xml">RSS</a>
+        <span class="footer-powered">Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank" rel="noopener">Gmeek</a></span>
+    </nav>
+</footer>
+</div>
+
+<script>
+var ICONS = {
+    sun: "M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z",
+    moon: "M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z",
+    sync: "M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z"
+};
+var THEME = {
+    light: ["sun", "#a63d52"],
+    dark: ["moon", "#e79aa9"],
+    auto: ["sync", ""]
+};
+function applyTheme(mode) {
+    document.documentElement.setAttribute("data-color-mode", mode);
+    var icon = document.getElementById("themeIcon");
+    icon.setAttribute("d", ICONS[THEME[mode][0]]);
+    document.getElementById("themeBtn").style.color = THEME[mode][1];
+}
+document.getElementById("themeBtn").addEventListener("click", function () {
+    var current = document.documentElement.getAttribute("data-color-mode");
+    var next = current === "light" ? "dark" : current === "dark" ? "auto" : "light";
+    try { localStorage.setItem("meek_theme", next); } catch (e) {}
+    applyTheme(next);
+});
+applyTheme(document.documentElement.getAttribute("data-color-mode") || "light");
+document.getElementById("copyrightYear").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
