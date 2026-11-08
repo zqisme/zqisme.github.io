@@ -86,12 +86,16 @@ function cleanDescription(text) {
     return truncate(value, 118);
 }
 
-// 从渲染后的正文里取第一段像样的文字，比原始 description 更适合当摘要
+// 从渲染后的正文里取第一段像样的文字，比原始 description 更适合当摘要。
+// 同时看 p / li / blockquote：任务清单类文章往往没有 <p>，只有 <li>。
 function firstParagraphText(bodyHtml) {
-    const paragraphs = [...bodyHtml.matchAll(/<p(?:\s[^>]*)?>([\s\S]*?)<\/p>/gi)];
-    for (const match of paragraphs) {
-        const text = textOf(match[1]).replace(/^[\s\-–—·•]+/, "").trim();
-        if (text.replace(/\s/g, "").length >= 24) { return truncate(text, 112); }
+    const blocks = [...bodyHtml.matchAll(/<(p|li|blockquote)(?:\s[^>]*)?>([\s\S]*?)<\/\1>/gi)];
+    for (const match of blocks) {
+        const text = textOf(match[2])
+            .replace(/^[\s\-–—·•]+/, "")
+            .replace(/^\[[ xX]\]\s*/, "")
+            .trim();
+        if (text.replace(/\s/g, "").length >= 16) { return truncate(text, 112); }
     }
     return "";
 }
